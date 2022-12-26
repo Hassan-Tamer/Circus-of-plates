@@ -6,6 +6,8 @@ import eg.edu.alexu.csd.oop.game.World;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import Object.*;
 
 public class Circuis implements World {
@@ -15,15 +17,17 @@ public class Circuis implements World {
     private final int  width,height;
 
 
-    public Circuis(int width,int height){
+    public Circuis(int width,int height) throws InterruptedException {
         this.width = width;
         this.height = height;
-        Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.6), "Assets\\clown2.png");
+        constant.add(new ImageObject(0,30,"Assets\\back.png"));
+
+        Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.6), "Assets\\Clown3.png");
         control.add(clown);
+        constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
+        constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
         moving.add(new ImageObject(0,0,"Assets\\pie_blue.png"));
         moving.add(new ImageObject(50,0,"Assets\\plate_Blue.png"));
-        constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
-        constant.add(new ImageObject(745,30,"Assets\\shelf.png"));
     }
     @Override
     public List<GameObject> getConstantObjects() {
@@ -53,8 +57,9 @@ public class Circuis implements World {
     @Override
     public boolean refresh() {
         GameObject o = moving.get(0);
-        o.setY(o.getY()+1);
         GameObject o2 = moving.get(1);
+        o.setY(o.getY()+1);
+
         o2.setY(o.getY()+1);
         return true;
     }
