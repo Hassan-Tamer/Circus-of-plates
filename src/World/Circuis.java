@@ -14,7 +14,7 @@ public class Circuis implements World {
     private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
     private final List<GameObject> moving = new LinkedList<GameObject>();   //plates
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
-    private final int  width,height;
+    private int  width,height;
 
 
     public Circuis(int width,int height) throws InterruptedException {
@@ -24,10 +24,11 @@ public class Circuis implements World {
 
         Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.6), "Assets\\Clown3.png");
         control.add(clown);
-        constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
-        constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
         moving.add(new ImageObject(0,0,"Assets\\pie_blue.png"));
         moving.add(new ImageObject(50,0,"Assets\\plate_Blue.png"));
+
+        constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
+        constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
     }
     @Override
     public List<GameObject> getConstantObjects() {
