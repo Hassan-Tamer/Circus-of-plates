@@ -23,7 +23,7 @@ public class Circuis implements World {
         moving.add(new ImageObject(0,0,"Assets\\pie_blue.png"));
         moving.add(new ImageObject(50,0,"Assets\\plate_Blue.png"));
         constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
-        constant.add(new ImageObject(745,30,"Assets\\shelf.png"));
+        constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
     }
     @Override
     public List<GameObject> getConstantObjects() {
