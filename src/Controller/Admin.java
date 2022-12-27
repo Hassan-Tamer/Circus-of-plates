@@ -29,7 +29,7 @@ public class Admin {
     private boolean leftIntersect(GameObject o , GameObject clown , int y){
         int netX = clown.getX() - o.getX();
         int netY = clown.getY() - o.getY();
-        boolean inRangeX = netX >=0 && netX < 40 ;
+        boolean inRangeX = netX >=0 && netX < 40;
         boolean inRangeY = netY == y;
         return inRangeX && inRangeY;
     }
@@ -76,7 +76,6 @@ public class Admin {
                 else
                     rightCollectables.push(plate);
             }
-
         }
 
 

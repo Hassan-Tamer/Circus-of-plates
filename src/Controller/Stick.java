@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Pie;
+import Model.Plate;
 import Model.Shape;
 
 import java.util.Stack;
@@ -9,23 +11,21 @@ public class Stick {
     private int y;
 
     public int intersectionHeight(Shape shape) {
-        int type = shape.getType();
         if (Collectables.empty()) {
-            if (type == 1) {
-                y = -55;
-            } else if (type == 2) {
-                y = -40;
+            if (shape instanceof Plate) {
+                y = ((Plate) shape).getBottomY();
+            } else if (shape instanceof Pie) {
+                y = ((Pie) shape).getBottomY();
             }
-            } else if (!Collectables.empty() && !shape.getIsSticked()) {
-                int peekType = Collectables.peek().getType();
-                if (peekType == 1) {
-                    y = y - 15;
-                } else {
-                    if (peekType == 2) {
-                        y = y - 35;
-                    }
-                }
-            }
+        }
+//            } else if (!Collectables.empty() && !shape.getIsSticked()) {
+//                Shape s = Collectables.peek();
+//                if (shape instanceof Plate) {
+//                    y = y - ((Plate) s).getDelta();
+//                } else if (shape instanceof Pie) {
+//                    y = y - ((Pie) s).getDelta();
+//                }
+//            }
 
             return y;
     }

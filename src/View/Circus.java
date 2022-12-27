@@ -11,7 +11,7 @@ import Model.*;
 public final class Circus implements World{
     private static Circus INSTANCE;
     private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
-    private final List<GameObject> moving = new LinkedList<GameObject>();   //plates
+    private final List<GameObject> moving = new LinkedList<GameObject>();   //plates , pies
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
     private final int width,height;
     private Admin admin;
@@ -24,8 +24,8 @@ public final class Circus implements World{
 
         Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.63), "Assets\\Clown2.png");
         control.add(clown);
-        Shape plate = new Shape(500,250,"Assets\\plate_green.png",1);
-        Shape pie = new Shape(500,0,"Assets\\pie_green.png",2);
+        Plate plate = new Plate(500,250,"Assets\\plate_green.png");
+        Pie pie = new Pie(500,0,"Assets\\pie_green.png");
         moving.add(plate);
         moving.add(pie);
         constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
@@ -42,8 +42,7 @@ public final class Circus implements World{
     }
     @Override
     public boolean refresh() {
-        admin.refresh(this);
-        return true;
+        return admin.refresh(this);
     }
 
     @Override
