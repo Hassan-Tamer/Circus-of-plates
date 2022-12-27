@@ -14,20 +14,21 @@ public final class Circus implements World{
     private final List<GameObject> moving = new LinkedList<GameObject>();   //plates
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
     private final int width,height;
-    private Admin admin = new Admin();
+    private Admin admin;
     private int ShapeSpeed = 10;    //The higher, the slower
+    private int ClownSpeed = 10;
     private Circus(int width, int height){
         this.width = width;
         this.height = height;
         constant.add(new ImageObject(0,30,"Assets\\back.png"));
 
-        Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.6), "Assets\\Clown2.png");
+        Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.63), "Assets\\Clown2.png");
         control.add(clown);
-//        moving.add(new ImageObject(clown.getX(), clown.getY()-200,"Assets\\pie_blue.png"));
-        moving.add(new ImageObject(500 ,90, "Assets\\plate_blue.png"));
-
+        Shape plate = new Shape(500,250,"Assets\\plate_green.png",2);
+        moving.add(plate);
         constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
         constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
+        admin = new Admin(this);
     }
 
     public static Circus getInstance(int width, int height) {
@@ -39,15 +40,7 @@ public final class Circus implements World{
     }
     @Override
     public boolean refresh() {
-        GameObject o = moving.get(0);
-        o.setY(o.getY() + 1);
-//        if(!leftIntersect(o, control.get(0)) && !rightIntersect(o,control.get(0)))
-//            o.setY(o.getY() + 1);
-//        else{
-//            System.out.println("inter");
-//        }
-
-
+        admin.refresh(this);
         return true;
     }
 
@@ -58,13 +51,12 @@ public final class Circus implements World{
 
     @Override
     public int getSpeed() {
-//        return ShapeSpeed;
-        return 50;
+        return ShapeSpeed;
     }
 
     @Override
     public int getControlSpeed() {
-        return 10;
+        return ClownSpeed;
     }
 
     @Override
@@ -95,6 +87,14 @@ public final class Circus implements World{
     }
     public void setShapeSpeed(int ShapeSpeed){
         this.ShapeSpeed = ShapeSpeed;
+    }
+
+    public int getClownSpeed(){
+        return ClownSpeed;
+    }
+
+    public void setClownSpeed(int speed){
+        this.ClownSpeed = speed;
     }
 
 }

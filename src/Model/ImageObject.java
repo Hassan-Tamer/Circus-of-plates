@@ -10,11 +10,10 @@ import java.io.IOException;
 
 public class ImageObject implements GameObject {
     private int x,y;
-    private boolean visible;
+    private final boolean visible;
     private final BufferedImage[] spriteImage = new BufferedImage[1];
     private String path;
     private Integer [] info= new Integer[2];
-
 
     public ImageObject(int x , int y , String path){
         this.x = x;
@@ -26,24 +25,6 @@ public class ImageObject implements GameObject {
         } catch (IOException e) {
             System.out.println("Error Loading Picture");
         }
-
-    }
-
-    public ImageObject(int x , int y , String path , String path2){
-        this.x = x;
-        this.y = y;
-        this.visible = true;
-        try {
-            spriteImage[0] =  ImageIO.read(new File(path));
-            spriteImage[1] =  ImageIO.read(new File(path2));
-        } catch (IOException e) {
-            System.out.println("Error Loading Picture");
-        }
-
-    }
-    public String PathSplitter(String Path){
-        //String str =Path.
-        return null;
     }
     public Integer[] getType(){
         return this.info;
