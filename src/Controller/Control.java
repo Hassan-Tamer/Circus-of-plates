@@ -1,4 +1,6 @@
-package Object;
+package Controller;
+
+import Model.ImageObject;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,8 @@
-package Object;
+package Model;
 
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
