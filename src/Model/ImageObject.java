@@ -13,6 +13,7 @@ public class ImageObject implements GameObject {
     private boolean visible;
     private final BufferedImage[] spriteImage = new BufferedImage[1];
     private String path;
+    private Integer [] info= new Integer[2];
 
 
     public ImageObject(int x , int y , String path){
@@ -25,6 +26,7 @@ public class ImageObject implements GameObject {
         } catch (IOException e) {
             System.out.println("Error Loading Picture");
         }
+
     }
 
     public ImageObject(int x , int y , String path , String path2){
@@ -37,6 +39,14 @@ public class ImageObject implements GameObject {
         } catch (IOException e) {
             System.out.println("Error Loading Picture");
         }
+
+    }
+    public String PathSplitter(String Path){
+        //String str =Path.
+        return null;
+    }
+    public Integer[] getType(){
+        return this.info;
     }
     @Override
     public int getX() {

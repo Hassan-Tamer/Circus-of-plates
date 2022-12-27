@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Admin;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
@@ -7,17 +8,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Model.*;
-
-public class Circuis implements World {
+public final class Circus implements World{
+    private static Circus INSTANCE;
     private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
     private final List<GameObject> moving = new LinkedList<GameObject>();   //plates
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
     private final int width,height;
-
-
-
-
-    public Circuis(int width,int height){
+    private Admin admin = new Admin();
+    private int ShapeSpeed = 10;    //The higher, the slower
+    private Circus(int width, int height){
         this.width = width;
         this.height = height;
         constant.add(new ImageObject(0,30,"Assets\\back.png"));
@@ -25,35 +24,29 @@ public class Circuis implements World {
         Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.6), "Assets\\Clown2.png");
         control.add(clown);
 //        moving.add(new ImageObject(clown.getX(), clown.getY()-200,"Assets\\pie_blue.png"));
-        moving.add(new ImageObject(500 ,90, "Assets\\plate_Blue.png"));
+        moving.add(new ImageObject(500 ,90, "Assets\\plate_blue.png"));
 
         constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
         constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
     }
-    private boolean leftIntersect(GameObject o , GameObject clown){
-        int netX = clown.getX() - o.getX();
-        int netY = clown.getY() - o.getY();
-        boolean inRangeX = netX >=0 && netX < 40 ;
-        boolean inRangeY = netY == 30;
-        return inRangeX && inRangeY;
-    }
 
-    private boolean rightIntersect(GameObject o , GameObject clown){
-        int netX = clown.getX() + clown.getWidth() - 60 - o.getX();
-        int netY = clown.getY() - o.getY();
-        boolean inRangeX = netX >=0 && netX < 40 ;
-        boolean inRangeY = netY == 30;
-        return inRangeX && inRangeY;
-    }
+    public static Circus getInstance(int width, int height) {
+        if(INSTANCE == null) {
+            INSTANCE = new Circus(width,height);
+        }
 
+        return INSTANCE;
+    }
     @Override
     public boolean refresh() {
         GameObject o = moving.get(0);
-        if(!leftIntersect(o, control.get(0)) && !rightIntersect(o,control.get(0)))
-            o.setY(o.getY() + 1);
-        else{
-            System.out.println("inter");
-        }
+        o.setY(o.getY() + 1);
+//        if(!leftIntersect(o, control.get(0)) && !rightIntersect(o,control.get(0)))
+//            o.setY(o.getY() + 1);
+//        else{
+//            System.out.println("inter");
+//        }
+
 
         return true;
     }
@@ -65,7 +58,8 @@ public class Circuis implements World {
 
     @Override
     public int getSpeed() {
-        return 10;
+//        return ShapeSpeed;
+        return 50;
     }
 
     @Override
@@ -96,4 +90,11 @@ public class Circuis implements World {
     public int getHeight() {
         return height;
     }
+    public int getShapeSpeed() {
+        return ShapeSpeed;
+    }
+    public void setShapeSpeed(int ShapeSpeed){
+        this.ShapeSpeed = ShapeSpeed;
+    }
+
 }

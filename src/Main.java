@@ -1,9 +1,9 @@
-import View.Circuis;
+import View.Circus;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-            GameEngine.start("Circus Of Plates",
-                    new Circuis(1100,600));
+        Circus circus = Circus.getInstance(1100,600);
+            GameEngine.start("Circus Of Plates", circus);
         }
     }

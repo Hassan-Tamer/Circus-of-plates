@@ -1,8 +1,6 @@
 package Model;
 
 public final class Clown extends ImageObject {
-    //Clown's Stick Length = 88
-
     private static Clown INSTANCE;
     private Clown(int x, int y, String path) {
         super(x, y, path);
