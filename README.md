@@ -14,3 +14,4 @@ Strategy : Difficulties - [Started]<br>
 4)Random Shapes <br>
 5)Handle difficulties<br>
 6)UML<br>
+7)Shape factory

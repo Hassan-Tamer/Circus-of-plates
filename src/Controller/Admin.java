@@ -1,16 +1,18 @@
 package Controller;
 
 import Model.ImageObject;
+import Model.Shape;
 import View.Circus;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Admin {
     private ArrayList<ImageObject> collectables= new ArrayList<>();
     private int Difficulty;
-    private Stick LeftStick;
-    private Stick RightStick;
+    private Stick LeftStick = new Stick();
+    private Stick RightStick = new Stick();
     private int y;
     private int ClownSpeed;
     private GameObject clown;
@@ -40,11 +42,10 @@ public class Admin {
         return inRangeX && inRangeY;
     }
 
-    private boolean isIntersected(GameObject o , GameObject clown,int y){
-        return rightIntersect(o,clown,y) || leftIntersect(o,clown,y);
+    private boolean isIntersected(GameObject o , GameObject clown,int yleft , int yright){
+        return rightIntersect(o,clown,yright) || leftIntersect(o,clown,yleft);
     }
-
-    private void stickShape(GameObject shape){
+    private void catchShape(Shape shape){
         int current = clown.getX();
         if(current!=prev){
             if(current < prev)
@@ -53,15 +54,31 @@ public class Admin {
                 shape.setX(shape.getX() + ClownSpeed);
             prev = current;
         }
+        shape.setStick(true);
     }
     public boolean refresh(Circus c){
-        GameObject plate = c.getMovableObjects().get(0);
-        if(!isIntersected(plate,clown,-55)) {
-            plate.setY(plate.getY() + 1);
+        Stack<Shape> leftCollectables = LeftStick.getCollectables();
+        Stack<Shape> rightCollectables = RightStick.getCollectables();
+        for(int i=0;i<c.getMovableObjects().size();i++){
+            Shape plate = (Shape) c.getMovableObjects().get(i);
+
+            int leftHeight = LeftStick.intersectionHeight(plate);
+            int rightHeight = RightStick.intersectionHeight(plate);
+
+            if(!isIntersected(plate,clown,leftHeight,rightHeight)){
+                plate.setY(plate.getY() + 1);
+            }
+            else{
+                catchShape(plate);
+                if(leftIntersect(plate,clown,leftHeight)){
+                    leftCollectables.push(plate);
+                }
+                else
+                    rightCollectables.push(plate);
+            }
+
         }
-        else{
-            stickShape(plate);
-        }
+
 
         return true;
     }

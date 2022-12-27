@@ -24,8 +24,10 @@ public final class Circus implements World{
 
         Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.63), "Assets\\Clown2.png");
         control.add(clown);
-        Shape plate = new Shape(500,250,"Assets\\plate_green.png",2);
+        Shape plate = new Shape(500,250,"Assets\\plate_green.png",1);
+        Shape pie = new Shape(500,0,"Assets\\pie_green.png",2);
         moving.add(plate);
+        moving.add(pie);
         constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
         constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
         admin = new Admin(this);
