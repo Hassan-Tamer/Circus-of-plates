@@ -35,7 +35,16 @@ public class Stick {
              yMin=yMin-35;
          }
      }
-
+    public Shape removeCollectedShape(int index){
+        Shape shape = collectedShapes.get(index);
+        if(shape instanceof Plate){
+            yMin=yMin+15;
+        }
+        if(shape instanceof Pie){
+            yMin=yMin+35;
+        }
+        return collectedShapes.remove(index);
+    }
      public boolean isFull(){
          return yMin == yMax;
      }

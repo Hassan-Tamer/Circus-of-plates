@@ -53,6 +53,7 @@ public class Admin {
 
     public boolean refresh(Circus c){
         long current = clock.millis();
+        boolean removedShapes = false;
        for(int i=0;i<c.getMovableObjects().size();i++){
            Shape shapec = (Shape) c.getMovableObjects().get(i);
 
@@ -62,13 +63,15 @@ public class Admin {
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
                    shapec.setY(shapec.getY() + yMin);
+                   removedShapes =removeLastThree(LeftStick,c);
                }else if(rightIntersect(shapec,clown)){
-                   int yMin = LeftStick.getyMin();
+                   int yMin = RightStick.getyMin();
                    RightStick.addCollectedShape(shapec);
                    shapec.setY(shapec.getY() + yMin);
+                   removedShapes =removeLastThree(RightStick,c);
                }
                c.getMovableObjects().remove(shapec);
-               c.getControlableObjects().add(shapec);
+               if(!removedShapes) c.getControlableObjects().add(shapec);
                 }
        }
         if(current - prevTime > FACTORYRATE){
@@ -85,5 +88,24 @@ public class Admin {
             }
         }
         return true;
+    }
+    private boolean removeLastThree(Stick stick,Circus c){
+
+        System.out.println("in check plates ");
+        int size = stick.getCollectedShapes().size();
+        if(size >= 3) {
+            if(stick.getCollectedShapes().get(size-1).getColor() == stick.getCollectedShapes().get(size-2).getColor() && stick.getCollectedShapes().get(size-2).getColor() == stick.getCollectedShapes().get(size-3).getColor())
+            {
+                //System.out.println("yayyy " + size );
+                //System.out.println(collectedShapes.remove(collectedShapes.get(size-1)));
+                System.out.println("in first element " + c.getControlableObjects().remove(stick.removeCollectedShape(size-1)));
+                c.getControlableObjects().remove(stick.removeCollectedShape(size-2));
+                c.getControlableObjects().remove(stick.removeCollectedShape(size-3));
+                return true;
+                //System.out.println("size after deletion " + size);
+            }
+        }
+        return false;
+
     }
 }
