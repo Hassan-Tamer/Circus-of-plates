@@ -1,11 +1,6 @@
-package Controller;
-
-import Model.Pie;
-import Model.Plate;
-import Model.Shape;
+package Model;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class Stick {
      private int yMin;
