@@ -1,9 +1,8 @@
-package Object;
+package Model;
 
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,10 +10,10 @@ import java.io.IOException;
 
 public class ImageObject implements GameObject {
     private int x,y;
-    private boolean visible;
+    private final boolean visible;
     private final BufferedImage[] spriteImage = new BufferedImage[1];
     private String path;
-
+    private Integer [] info= new Integer[2];
 
     public ImageObject(int x , int y , String path){
         this.x = x;
@@ -27,18 +26,9 @@ public class ImageObject implements GameObject {
             System.out.println("Error Loading Picture");
         }
     }
-
-    public ImageObject(int x , int y , String path , String path2){
-        this.x = x;
-        this.y = y;
-        this.visible = true;
-        try {
-            spriteImage[0] =  ImageIO.read(new File(path));
-            spriteImage[1] =  ImageIO.read(new File(path2));
-        } catch (IOException e) {
-            System.out.println("Error Loading Picture");
-        }
-    }
+//    public Integer[] getType(){
+//        return this.info;
+//    }
     @Override
     public int getX() {
         return x;

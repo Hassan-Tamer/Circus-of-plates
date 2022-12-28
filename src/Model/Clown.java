@@ -1,7 +1,6 @@
-package Object;
+package Model;
 
 public final class Clown extends ImageObject {
-
     private static Clown INSTANCE;
     private Clown(int x, int y, String path) {
         super(x, y, path);
