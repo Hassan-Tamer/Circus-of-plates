@@ -14,7 +14,7 @@ public class Circuis implements World {
     private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
     private final List<GameObject> moving = new LinkedList<GameObject>();   //plates
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
-    private int  width,height;
+    private int width,height;
 
 
     public Circuis(int width,int height) throws InterruptedException {
