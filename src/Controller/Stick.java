@@ -17,15 +17,14 @@ public class Stick {
             } else if (shape instanceof Pie) {
                 y = ((Pie) shape).getBottomY();
             }
-        }
-//            } else if (!Collectables.empty() && !shape.getIsSticked()) {
+//            } else if (!Collectables.empty()) {
 //                Shape s = Collectables.peek();
-//                if (shape instanceof Plate) {
+//                if (s instanceof Plate) {
 //                    y = y - ((Plate) s).getDelta();
-//                } else if (shape instanceof Pie) {
+//                } else if (s instanceof Pie) {
 //                    y = y - ((Pie) s).getDelta();
 //                }
-//            }
+            }
 
             return y;
     }

@@ -14,7 +14,7 @@ public final class Circus implements World{
     private final List<GameObject> moving = new LinkedList<GameObject>();   //plates , pies
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
     private final int width,height;
-    private Admin admin;
+    private final Admin admin;
     private int ShapeSpeed = 10;    //The higher, the slower
     private int ClownSpeed = 10;
     private Circus(int width, int height){
@@ -24,10 +24,12 @@ public final class Circus implements World{
 
         Clown clown = Clown.getInstance((width/2) - 50, (int)(height*0.63), "Assets\\Clown2.png");
         control.add(clown);
-        Plate plate = new Plate(500,250,"Assets\\plate_green.png");
-        Pie pie = new Pie(500,0,"Assets\\pie_green.png");
+        Plate plate = new Plate(490,350,"Assets\\plate_green.png");
+//        Pie pie = new Pie(580,300,"Assets\\pie_green.png");
+//        Pie pie2 = new Pie(580,100,"Assets\\pie_green.png");
         moving.add(plate);
-        moving.add(pie);
+//        moving.add(pie);
+//        moving.add(pie2);
         constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
         constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
         admin = new Admin(this);

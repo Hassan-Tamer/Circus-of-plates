@@ -1,5 +1,7 @@
 package Model;
 
+import View.Circus;
+
 public class Shape extends ImageObject{
 
     public int getColor() {
@@ -27,5 +29,22 @@ public class Shape extends ImageObject{
 
     public void setStick(boolean stick){
         isSticked = stick;
+    }
+
+//    @Override
+//    public void setX(int x) {
+//        if(x < 80 || x > 920)
+//            return;
+//        super.setX(x);
+//    }
+
+
+    @Override
+    public void setY(int y) {
+        Circus c = Circus.getInstance(1100,600);
+        if(c.getControlableObjects().contains(this)){
+            return;
+        }
+        super.setY(y);
     }
 }
