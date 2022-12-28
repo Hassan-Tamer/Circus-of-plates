@@ -36,7 +36,7 @@ public class Shape extends ImageObject{
 
     @Override
     public void setX(int x) {
-        if((this.getX() > 250 && this.getX() < 400) && circus.getMovableObjects().contains(this) )
+        if((this.getX() > 290 && this.getX() < 720) && circus.getMovableObjects().contains(this) )
             return;
 
         super.setX(x);
@@ -48,6 +48,7 @@ public class Shape extends ImageObject{
         if(circus.getControlableObjects().contains(this)){
             return;
         }
-        super.setY(y);
+        if((this.getX() >=290 && this.getX() < 730))
+            super.setY(y);
     }
 }
