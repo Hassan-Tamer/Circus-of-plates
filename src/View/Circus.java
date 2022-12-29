@@ -34,7 +34,7 @@ public final class Circus implements World{
         control.add(clown);
         constant.add(rightShelf);
         constant.add(leftShelf);
-        constant.add(new ImageObject(width/2,3,"Assets\\life.png"));
+        constant.add(new ImageObject(width/2,0,"Assets\\life.png"));
         constant.add(new ImageObject(21 + width/2,0,"Assets\\life.png"));
         constant.add(new ImageObject(42 + width/2,0,"Assets\\life.png"));
     }
