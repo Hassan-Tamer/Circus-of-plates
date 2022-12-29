@@ -26,7 +26,7 @@ public class Admin {
         this.clown = c.getControlableObjects().get(0);
         clock = Clock.systemDefaultZone();
         rand = new ShapeGenerator();
-        TOPSTICK = clown.getHeight();
+        TOPSTICK = 323;
     }
 
 
@@ -34,17 +34,17 @@ public class Admin {
         int y = TOPSTICK;
         int netX = clown.getX() - o.getX();
         int netY = clown.getY() - o.getY();
-        boolean inRangeX = netX >=0 && netX < 40;
-        boolean inRangeY = netY == y;
+        boolean inRangeX = netX ==-5;
+        boolean inRangeY = o.getY()==y;
         return inRangeX && inRangeY;
     }
 
     private boolean rightIntersect(GameObject o , GameObject clown){
         int y = TOPSTICK;
-        int netX = clown.getX() + clown.getWidth() - 60 - o.getX();
+        int netX = clown.getX() + clown.getWidth() - 20 - o.getX();
         int netY = clown.getY() - o.getY();
-        boolean inRangeX = netX >=0 && netX < 40 ;
-        boolean inRangeY = netY == y;
+        boolean inRangeX = netX ==-5 ;
+        boolean inRangeY = netY == 0;
         return inRangeX && inRangeY;
     }
 
@@ -60,6 +60,7 @@ public class Admin {
 
            if(isIntersected(shapec , clown)){
                if(leftIntersect(shapec,clown)){
+                   System.out.println("intersected");
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
                    shapec.setY(shapec.getY() + yMin);
@@ -67,7 +68,7 @@ public class Admin {
                }else if(rightIntersect(shapec,clown)){
                    int yMin = RightStick.getyMin();
                    RightStick.addCollectedShape(shapec);
-                   shapec.setY(shapec.getY() + yMin);
+                    shapec.setY(shapec.getY() + yMin);
                    removedShapes =removeLastThree(RightStick,c);
                }
                c.getMovableObjects().remove(shapec);
