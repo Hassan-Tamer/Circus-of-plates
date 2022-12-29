@@ -19,13 +19,14 @@ public class Admin {
     private int shapeSpeed = 1;
     private long prevTime = 0;
     private ShapeGenerator rand;
-    private static final int TOPSTICK = 5;
+    private int TOPSTICK;
     private static final int FACTORYRATE = 1000;
 
     public Admin(Circus c){
         this.clown = c.getControlableObjects().get(0);
         clock = Clock.systemDefaultZone();
         rand = new ShapeGenerator();
+        TOPSTICK = clown.getHeight();
     }
 
 
@@ -58,7 +59,6 @@ public class Admin {
            Shape shapec = (Shape) c.getMovableObjects().get(i);
 
            if(isIntersected(shapec , clown)){
-
                if(leftIntersect(shapec,clown)){
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
@@ -73,36 +73,37 @@ public class Admin {
                c.getMovableObjects().remove(shapec);
                if(!removedShapes) c.getControlableObjects().add(shapec);
                 }
+           else if(shapec.getY() > c.getHeight())
+               c.getMovableObjects().remove(shapec);
+
        }
         if(current - prevTime > FACTORYRATE){
             c.getMovableObjects().add(rand.randomGenerator());
             prevTime = current;
         }
         for(GameObject shape : c.getMovableObjects()){
-            if(shape.getX() < 290)
+
+            if(shape.getX() < c.getLeftShelf().getFallingPosition()+10)
                 shape.setX(shape.getX() + shapeSpeed);
-            else if(shape.getX() > 720)
+            else if(shape.getX() > c.getRightShelf().getFallingPosition()-70)
                 shape.setX(shape.getX() - shapeSpeed);
-            if(shape.getX()>=290&&shape.getX()<=720){
+            if(shape.getX()>=c.getLeftShelf().getFallingPosition()+10&&shape.getX()<=c.getRightShelf().getFallingPosition()-70){
                 shape.setY(shape.getY() + shapeSpeed);
             }
+
         }
         return true;
     }
     private boolean removeLastThree(Stick stick,Circus c){
 
-        System.out.println("in check plates ");
         int size = stick.getCollectedShapes().size();
         if(size >= 3) {
             if(stick.getCollectedShapes().get(size-1).getColor() == stick.getCollectedShapes().get(size-2).getColor() && stick.getCollectedShapes().get(size-2).getColor() == stick.getCollectedShapes().get(size-3).getColor())
             {
-                //System.out.println("yayyy " + size );
-                //System.out.println(collectedShapes.remove(collectedShapes.get(size-1)));
                 System.out.println("in first element " + c.getControlableObjects().remove(stick.removeCollectedShape(size-1)));
                 c.getControlableObjects().remove(stick.removeCollectedShape(size-2));
                 c.getControlableObjects().remove(stick.removeCollectedShape(size-3));
                 return true;
-                //System.out.println("size after deletion " + size);
             }
         }
         return false;

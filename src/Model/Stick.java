@@ -7,8 +7,8 @@ public class Stick {
      private int yMax;
      private ArrayList<Shape> collectedShapes= new ArrayList<>();
      public Stick() {
-         this.yMax=55;
-         this.yMin=52;
+         this.yMax=259;
+         this.yMin=397;
      }
      public int getyMin(){
          return this.yMin;

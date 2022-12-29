@@ -2,23 +2,14 @@ package Model;
 
 import View.Circus;
 
-public class Shape extends ImageObject{
-
+public abstract class Shape extends ImageObject{
+    private int shapeHeight;
+    private int shapeWidth ;
     public int getColor() {
         return color;
     }
     private final int color;        //red , green , blue , invalid  --> 1,2,3,-1
     private Circus circus;
-    public boolean isOnShelf() {
-        return onShelf;
-    }
-
-    public void setOnShelf(boolean onShelf) {
-        this.onShelf = onShelf;
-    }
-
-    //    private boolean isSticked = false;
-    private boolean onShelf = true;
     public Shape(int x, int y, String path) {
         super(x, y, path);
         color = pathSplitter(path);
@@ -36,7 +27,7 @@ public class Shape extends ImageObject{
 
     @Override
     public void setX(int x) {
-        if((this.getX() > 290 && this.getX() < 720) && circus.getMovableObjects().contains(this) )
+        if((this.getX() > 310 && this.getX() < 730) && circus.getMovableObjects().contains(this) )
             return;
 
         super.setX(x);
@@ -48,7 +39,23 @@ public class Shape extends ImageObject{
         if(circus.getControlableObjects().contains(this)){
             return;
         }
-        if((this.getX() >=290 && this.getX() < 730))
+        if((this.getX() >=310 && this.getX() <= 730))
             super.setY(y);
+    }
+
+    public int getShapeHeight(){
+        return shapeHeight;
+    }
+
+    public int getShapeWidth(){
+        return shapeWidth;
+    }
+
+    public void setShapeHeight(int shapeHeight) {
+        this.shapeHeight = shapeHeight;
+    }
+
+    public void setShapeWidth(int shapeWidth) {
+        this.shapeWidth = shapeWidth;
     }
 }

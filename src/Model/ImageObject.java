@@ -26,9 +26,6 @@ public class ImageObject implements GameObject {
             System.out.println("Error Loading Picture");
         }
     }
-//    public Integer[] getType(){
-//        return this.info;
-//    }
     @Override
     public int getX() {
         return x;
