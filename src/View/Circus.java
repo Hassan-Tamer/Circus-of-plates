@@ -25,6 +25,10 @@ public final class Circus implements World{
         constant.add(new ImageObject(0,30,"Assets\\shelf.png"));
         constant.add(new ImageObject(800,30,"Assets\\shelf.png"));
         admin = new Admin(this);
+        Music hassan = new Music("Assets\\tadaa.wav");
+        hassan.playSound();
+        Music yassin = new Music("Assets\\circus.wav");
+        yassin.start();
     }
 
     public static Circus getInstance(int width, int height) {
