@@ -9,15 +9,24 @@ import java.util.LinkedList;
 import java.util.List;
 //plate 70*22
 import Model.*;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 public final class Circus implements World{
     private static Circus INSTANCE;
     private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
     private final List<GameObject> moving = new LinkedList<GameObject>();   //plates , pies
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
     private final int width,height;
+
+    public Clown getClown() {
+        return clown;
+    }
+
+    private Clown clown;
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
     private final Admin admin;
     private static final int CLOWNSPEED = 10;
     private Shelf rightShelf;
@@ -28,11 +37,11 @@ public final class Circus implements World{
         this.height = height;
         init();
         admin = new Admin(this);
-        backgroundMusic();
+//        backgroundMusic();
     }
 
     private void init(){
-        Clown clown = Clown.getInstance((width/2) - 50, height-(259) - 18, "Assets\\Clown2.png");
+        clown = Clown.getInstance((width/2) - 50, height-(259) - 18, "Assets\\Clown2.png");
         rightShelf = new Shelf(800,50,"Assets\\shelf.png",800);
         leftShelf = new Shelf(0,50,"Assets\\shelf.png",300);
         ImageObject BackGround =  new ImageObject(0,30,"Assets\\back.png","Assets\\back2.png");

@@ -1,6 +1,8 @@
 package Model;
 
 import View.Circus;
+import eg.edu.alexu.csd.oop.game.GameObject;
+
 import java.io.IOException;
 
 public abstract class Shape extends ImageObject{
@@ -10,7 +12,7 @@ public abstract class Shape extends ImageObject{
         return color;
     }
     private final int color;        //red , green , blue , invalid  --> 1,2,3,-1
-    private Circus circus;
+    private final Circus circus;
     public Shape(int x, int y, String path){
         super(x, y, path);
         color = pathSplitter(path);
@@ -32,7 +34,14 @@ public abstract class Shape extends ImageObject{
 
     @Override
     public void setX(int x) {
+        GameObject clown = circus.getControlableObjects().get(0);
         if((this.getX() > 310 && this.getX() < 730) && circus.getMovableObjects().contains(this) )
+            return;
+
+        if(circus.getAdmin().getLeftStick().getCollectedShapes().contains(this) && x > clown.getX() - 2)
+            return;
+
+        if(circus.getAdmin().getRightStick().getCollectedShapes().contains(this) && x < clown.getX() + clown.getWidth()/2)
             return;
 
         super.setX(x);

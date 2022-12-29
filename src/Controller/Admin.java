@@ -16,6 +16,15 @@ public class Admin {
     private ArrayList<ImageObject> collectables= new ArrayList<>();
     private int Difficulty;
     private final Stick LeftStick = new Stick();
+
+    public Stick getLeftStick() {
+        return LeftStick;
+    }
+
+    public Stick getRightStick() {
+        return RightStick;
+    }
+
     private final Stick RightStick = new Stick();
     private final GameObject clown;
     private Clock clock;

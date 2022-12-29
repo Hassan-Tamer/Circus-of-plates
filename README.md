@@ -14,5 +14,7 @@ Strategy : Difficulties - [Started]<br>
 4)Handle difficulties<br>
 5)UML<br>
 6)general code<br>
-7)bug left and right corner<br>
+8)new game<br>
+9)menu bar new class<br>
+
 
