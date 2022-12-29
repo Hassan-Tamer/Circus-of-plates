@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import java.io.IOException;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class ImageObjectFactory {
             return new Pie(1025,3,"Assets\\pie_"+Color.get(index)+".png");
       return null;
     }
-    public ImageObject CreatBomb(){
+    public ImageObject CreatBomb() throws IOException{
         Integer[] variableX= {0,183,366,549,732,915};
         int index = (int)(Math.random() * 5);
         Bomb bomb = new Bomb(variableX[index],0,"Assets\\bomb.png");

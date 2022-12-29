@@ -7,8 +7,8 @@ public class Stick {
      private int yMax;
      private ArrayList<Shape> collectedShapes= new ArrayList<>();
      public Stick() {
-         this.yMax=323;        //y of clown
-         this.yMin=461;         // y clown + stick length
+         this.yMax=55;        //y of clown == y of clown + stick length since the y coordinate is top left
+         this.yMin=440;         // y clown + stick length
      }
      public int getyMin(){
          return this.yMin;
@@ -28,11 +28,11 @@ public class Stick {
 
      public void addCollectedShape(Shape shape){
          collectedShapes.add(shape);
-         yMin=yMin-shape.getHeight()/2;
+         yMin=yMin-(shape instanceof Plate ? 20: 40);
      }
     public Shape removeCollectedShape(int index){
         Shape shape = collectedShapes.get(index);
-        yMin=yMin+shape.getHeight()/2;
+        yMin=yMin+(shape instanceof Plate ? 20: 40);
         return collectedShapes.remove(index);
     }
 

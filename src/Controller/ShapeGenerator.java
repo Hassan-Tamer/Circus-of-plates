@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Shape;
+import java.io.IOException;
 
 public class ShapeGenerator {
     public Shape randomGenerator(){

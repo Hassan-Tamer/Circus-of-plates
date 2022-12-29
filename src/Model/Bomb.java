@@ -1,7 +1,9 @@
 package Model;
 
+import java.io.IOException;
+
 public class Bomb extends Shape{
-    public Bomb(int x, int y , String path) {
+    public Bomb(int x, int y , String path){
         super(x, y, path);
     }
 

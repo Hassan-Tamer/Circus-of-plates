@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Admin;
+import Controller.ImageObjectFactory;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
@@ -8,6 +9,9 @@ import java.util.LinkedList;
 import java.util.List;
 //plate 70*22
 import Model.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public final class Circus implements World{
     private static Circus INSTANCE;
     private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
@@ -18,25 +22,28 @@ public final class Circus implements World{
     private static final int CLOWNSPEED = 10;
     private Shelf rightShelf;
     private Shelf leftShelf;
+    private long startTime;
     private Circus(int width, int height){
         this.width = width;
         this.height = height;
         init();
         admin = new Admin(this);
-//        backgroundMusic();
+        backgroundMusic();
     }
 
     private void init(){
         Clown clown = Clown.getInstance((width/2) - 50, height-(259) - 18, "Assets\\Clown2.png");
         rightShelf = new Shelf(800,50,"Assets\\shelf.png",800);
         leftShelf = new Shelf(0,50,"Assets\\shelf.png",300);
-        constant.add(new ImageObject(0,30,"Assets\\back.png"));
+        ImageObject BackGround =  new ImageObject(0,30,"Assets\\back.png","Assets\\back2.png");
+        constant.add(BackGround);
         control.add(clown);
         constant.add(rightShelf);
         constant.add(leftShelf);
         constant.add(new ImageObject(width/2,0,"Assets\\life.png"));
         constant.add(new ImageObject(21 + width/2,0,"Assets\\life.png"));
         constant.add(new ImageObject(42 + width/2,0,"Assets\\life.png"));
+        startTime = System.currentTimeMillis();
     }
 
     private void backgroundMusic(){
@@ -46,7 +53,7 @@ public final class Circus implements World{
         backMusic.start();
     }
 
-    public static Circus getInstance(int width, int height) {
+    public static Circus getInstance(int width, int height){
         if(INSTANCE == null) {
             INSTANCE = new Circus(width,height);
         }
@@ -60,12 +67,12 @@ public final class Circus implements World{
 
     @Override
     public String getStatus() {
-        return null;
+        return "Score = " + ((Clown)getControlableObjects().get(0)).getScore();
     }
 
     @Override
     public int getSpeed() {
-        return 10;
+        return 1;
     }
 
     @Override
