@@ -50,10 +50,12 @@ public abstract class Shape extends ImageObject{
 
     @Override
     public void setY(int y) {
+        Shelf shelfR = circus.getLeftShelf();
+        Shelf shelfL = circus.getRightShelf();
         if(circus.getControlableObjects().contains(this)){
             return;
         }
-        if((this.getX() >=310 && this.getX() <= 730))
+        if((this.getX() >= shelfR.getFallingPosition() && this.getX() <= shelfL.getFallingPosition()))
             super.setY(y);
     }
 
