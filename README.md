@@ -8,7 +8,7 @@ Strategy : Difficulties - [Started]<br>
 
 ---------------------------------
 ***TODO***<br>
-1)Score and dynamics<br>
+1)dynamics<br>
 2)range in y -fastspeeds<br>
 3)bombs and lives<br>
 4)Handle difficulties<br>
