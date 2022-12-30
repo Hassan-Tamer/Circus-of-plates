@@ -1,10 +1,6 @@
 package Controller;
 
-import Model.Clown;
-import Model.ImageObject;
-import Model.Pie;
-import Model.Shape;
-import Model.Stick;
+import Model.*;
 import View.Circus;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
@@ -29,11 +25,13 @@ public class Admin {
     private final GameObject clown;
     private Clock clock;
     private int shapeSpeed = 1;
-    private long prevTime = 0;
+    private long prevTimeFactory = 0;
+    private long prevTimeBomb = 0;
     private ShapeGenerator rand;
     private int TOPSTICK;
-    private static final int FACTORYRATE = 1000;
-    private int Margin = 10; // can change with difficulty for more accuracy 
+    private int FACTORYRATE = 1000;
+    private int BOMBRATE = 4000;
+    private int Margin = 10; // can change with difficulty for more accuracy
     
     public Admin(Circus c){
         this.clown = c.getControlableObjects().get(0);
@@ -66,18 +64,21 @@ public class Admin {
     }
 
     public boolean refresh(Circus c){
-        long current = clock.millis();
+        long currentFactory = clock.millis();
+        long currentFactoryBomb = clock.millis();
         boolean removedShapes = false;
        for(int i=0;i<c.getMovableObjects().size();i++){
            Shape shapec = (Shape) c.getMovableObjects().get(i);
 
            if(isIntersected(shapec , clown)){
-               if(leftIntersect(shapec,clown)){
-                   System.out.println("intersected");
+               if(shapec instanceof Bomb){
+                   //penalty
+               }
+               else if(leftIntersect(shapec,clown)){
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
                    if(shapec instanceof Pie){
-                    shapec.setY(shapec.getY() - 30);} 
+                    shapec.setY(shapec.getY() - 30);}
                    removedShapes =removeLastThree(LeftStick,c);
                }else if(rightIntersect(shapec,clown)){
                    int yMin = RightStick.getyMin();
@@ -87,16 +88,23 @@ public class Admin {
                    removedShapes =removeLastThree(RightStick,c);
                }
                c.getMovableObjects().remove(shapec);
-               if(!removedShapes) c.getControlableObjects().add(shapec);
+               if(!removedShapes)
+                   c.getControlableObjects().add(shapec);
                 }
            else if(shapec.getY() > c.getHeight())
                c.getMovableObjects().remove(shapec);
 
        }
-        if(current - prevTime > FACTORYRATE){
+        if(currentFactory - prevTimeFactory > FACTORYRATE){
             c.getMovableObjects().add(rand.randomGenerator());
-            prevTime = current;
+            prevTimeFactory = currentFactory;
         }
+
+        if(currentFactoryBomb - prevTimeBomb > BOMBRATE){
+            c.getMovableObjects().add(rand.randomObstacle());
+            prevTimeBomb = currentFactoryBomb;
+        }
+
         for(GameObject shape : c.getMovableObjects()){
 
             if(shape.getX() < c.getLeftShelf().getFallingPosition()+10)
@@ -116,7 +124,7 @@ public class Admin {
         if(size >= 3) {
             if(stick.getCollectedShapes().get(size-1).getColor() == stick.getCollectedShapes().get(size-2).getColor() && stick.getCollectedShapes().get(size-2).getColor() == stick.getCollectedShapes().get(size-3).getColor())
             {
-                System.out.println("in first element " + c.getControlableObjects().remove(stick.removeCollectedShape(size-1)));
+                c.getControlableObjects().remove(stick.removeCollectedShape(size-1));
                 c.getControlableObjects().remove(stick.removeCollectedShape(size-2));
                 c.getControlableObjects().remove(stick.removeCollectedShape(size-3));
                 ((Clown)clown).addPoint();
@@ -124,6 +132,13 @@ public class Admin {
             }
         }
         return false;
+    }
 
+    public void setFACTORYRATE(int FACTORYRATE) {
+        this.FACTORYRATE = FACTORYRATE;
+    }
+
+    public void setBOMBRATE(int BOMBRATE) {
+        this.BOMBRATE = BOMBRATE;
     }
 }

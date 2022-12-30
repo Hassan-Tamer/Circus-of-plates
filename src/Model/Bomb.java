@@ -7,6 +7,10 @@ public class Bomb extends Shape{
         super(x, y, path);
     }
 
+    public Bomb(int x, int y){
+        super(x, y, "Assets\\bomb.png");
+    }
+
     @Override
     public void setY(int y) {
         super.setY(y);
