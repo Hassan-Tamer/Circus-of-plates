@@ -15,7 +15,7 @@ public final class Circus implements World{
     private final List<GameObject> constant = new LinkedList<GameObject>();
     private final List<GameObject> moving = new LinkedList<GameObject>();
     private final List<GameObject> control = new LinkedList<GameObject>();
-    private int Lives = 1;
+    private int Lives = 4;
     private final int width,height;
     private Clown clown;
     private final Admin admin;

@@ -65,7 +65,7 @@ public class Admin {
     }
 
     private boolean isIntersected(GameObject o , GameObject clown){
-        System.out.println(gameOver);
+       // System.out.println(gameOver);
         return rightIntersect(o,clown) || leftIntersect(o,clown);
     }
     public boolean refresh(Circus c){
@@ -96,6 +96,7 @@ public class Admin {
                            c.getControlableObjects().remove(LeftStick.removeCollectedShape(z));
                        }
                        LeftStick.setyMin(440);
+                       LeftStick.getCollectedShapes().clear();
                        continue;
                    }*/
                }else if(rightIntersect(shapec,clown)){
