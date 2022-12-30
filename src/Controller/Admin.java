@@ -65,6 +65,7 @@ public class Admin {
     }
 
     private boolean isIntersected(GameObject o , GameObject clown){
+        System.out.println(gameOver);
         return rightIntersect(o,clown) || leftIntersect(o,clown);
     }
     public boolean refresh(Circus c){
