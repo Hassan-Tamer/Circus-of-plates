@@ -61,14 +61,6 @@ public class Admin {
     private boolean isIntersected(GameObject o , GameObject clown){
         return rightIntersect(o,clown) || leftIntersect(o,clown);
     }
-
-    private boolean BombStriked(GameObject b, GameObject clown){
-        int netX = clown.getX() - (b.getX() + b.getWidth());
-        int netY = clown.getY() - (b.getY()+ b.getHeight() - 10);
-        boolean inRangeX = netX<=0 && netX>=-1*(clown.getWidth());
-        boolean inRangeY = netY<=0 && netY>=-10;
-        return inRangeX && inRangeY;
-    }
     public boolean refresh(Circus c){
         long currentFactory = clock.millis();
         long currentFactoryBomb = clock.millis();
@@ -77,7 +69,7 @@ public class Admin {
            Shape shapec = (Shape) c.getMovableObjects().get(i);
 
            if(shapec instanceof Bomb){
-                   if(BombStriked(shapec, clown)){
+                   if(Bomb.BombStriked(shapec, clown)){
                         c.getMovableObjects().remove(shapec);
                         c.loseALive();
                    }
