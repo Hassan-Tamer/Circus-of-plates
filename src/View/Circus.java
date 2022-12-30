@@ -15,7 +15,7 @@ public final class Circus implements World{
     private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
     private final List<GameObject> moving = new LinkedList<GameObject>();   //plates , pies
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
-    private int Lives;
+    private static int LIVES = 5;
     private final int width,height;
     public Clown getClown() {
         return clown;
@@ -49,22 +49,21 @@ public final class Circus implements World{
         control.add(clown);
         constant.add(rightShelf);
         constant.add(leftShelf);
-        Lives = 5;
         updateLives();
         startTime = System.currentTimeMillis();
     }
 
     public void loseALive(){
-        if(Lives>1){
+        if(LIVES>1){
             constant.remove(constant.size()-1);
-            Lives--;
+            LIVES--;
         }
         else{
             control.remove(clown);// hina mi7tageen clone 34an ne initialize el crying clown with the same coordinates as the original clown
         }
     }
     private void updateLives(){
-        for(int i = 0; i < Lives; i++){
+        for(int i = 0; i < LIVES; i++){
             constant.add(new ImageObject(21*i + width/2,0,"Assets\\life.png"));
         }
     }
@@ -89,7 +88,7 @@ public final class Circus implements World{
 
     @Override
     public String getStatus() {
-        return "Score = " + ((Clown)getControlableObjects().get(0)).getScore() + "   ||   Lives = " + Lives;
+        return "Score = " + ((Clown)getControlableObjects().get(0)).getScore() + "   ||   Lives = " + LIVES;
     }
 
     @Override
