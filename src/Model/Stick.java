@@ -37,7 +37,7 @@ public class Stick {
     }
 
      public boolean isFull(){
-         return yMin == yMax;
+         return collectedShapes.size() == 6;
      }
 
 }

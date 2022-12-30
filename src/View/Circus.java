@@ -15,8 +15,8 @@ public final class Circus implements World{
     private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
     private final List<GameObject> moving = new LinkedList<GameObject>();   //plates , pies
     private final List<GameObject> control = new LinkedList<GameObject>();  //clown
+    private int Lives;
     private final int width,height;
-
     public Clown getClown() {
         return clown;
     }
@@ -49,12 +49,25 @@ public final class Circus implements World{
         control.add(clown);
         constant.add(rightShelf);
         constant.add(leftShelf);
-        constant.add(new ImageObject(width/2,0,"Assets\\life.png"));
-        constant.add(new ImageObject(21 + width/2,0,"Assets\\life.png"));
-        constant.add(new ImageObject(42 + width/2,0,"Assets\\life.png"));
+        Lives = 5;
+        updateLives();
         startTime = System.currentTimeMillis();
     }
 
+    public void loseALive(){
+        if(Lives>1){
+            constant.remove(constant.size()-1);
+            Lives--;
+        }
+        else{
+            control.remove(clown);// hina mi7tageen clone 34an ne initialize el crying clown with the same coordinates as the original clown
+        }
+    }
+    private void updateLives(){
+        for(int i = 0; i < Lives; i++){
+            constant.add(new ImageObject(21*i + width/2,0,"Assets\\life.png"));
+        }
+    }
     private void backgroundMusic(){
         Music intro = new Music("Assets\\tadaa.wav");
         intro.playSound();
@@ -76,12 +89,12 @@ public final class Circus implements World{
 
     @Override
     public String getStatus() {
-        return "Score = " + ((Clown)getControlableObjects().get(0)).getScore();
+        return "Score = " + ((Clown)getControlableObjects().get(0)).getScore() + "   ||   Lives = " + Lives;
     }
 
     @Override
     public int getSpeed() {
-        return 1;
+        return 10;
     }
 
     @Override

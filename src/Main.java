@@ -30,17 +30,19 @@ public class Main {
         menu.add(resumeMenuItem);
         menuBar.add(menu);
 
-        Circus circus = Circus.getInstance(1100,600);
+        final Circus circus = Circus.getInstance(1100,600);
         final GameEngine.GameController gameController =  GameEngine.start("Circus Of Plates", circus,menuBar);
 
         easy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
             }
         });
         med.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
             }
         });
         hard.addActionListener(new ActionListener() {

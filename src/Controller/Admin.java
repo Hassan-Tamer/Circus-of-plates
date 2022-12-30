@@ -10,7 +10,6 @@ import java.time.*;
 
 public class Admin {
     private ArrayList<ImageObject> collectables= new ArrayList<>();
-    private int Difficulty;
     private final Stick LeftStick = new Stick();
 
     public Stick getLeftStick() {
@@ -63,23 +62,43 @@ public class Admin {
         return rightIntersect(o,clown) || leftIntersect(o,clown);
     }
 
+    private boolean BombStriked(GameObject b, GameObject clown){
+        int netX = clown.getX() - (b.getX() + b.getWidth());
+        int netY = clown.getY() - (b.getY()+ b.getHeight() - 10);
+        boolean inRangeX = netX<=0 && netX>=-1*(clown.getWidth());
+        boolean inRangeY = netY<=0 && netY>=-10;
+        return inRangeX && inRangeY;
+    }
     public boolean refresh(Circus c){
         long currentFactory = clock.millis();
         long currentFactoryBomb = clock.millis();
-        boolean removedShapes = false;
+        boolean removedShapes = false, Full = false;
        for(int i=0;i<c.getMovableObjects().size();i++){
            Shape shapec = (Shape) c.getMovableObjects().get(i);
 
-           if(isIntersected(shapec , clown)){
-               if(shapec instanceof Bomb){
-                   //penalty
+           if(shapec instanceof Bomb){
+                   if(BombStriked(shapec, clown)){
+                        c.getMovableObjects().remove(shapec);
+                        c.loseALive();
+                   }
                }
-               else if(leftIntersect(shapec,clown)){
+           if(isIntersected(shapec , clown)){
+
+                if(leftIntersect(shapec,clown)){
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
                    if(shapec instanceof Pie){
-                    shapec.setY(shapec.getY() - 30);}
+                   shapec.setY(shapec.getY() - 30);}
                    removedShapes =removeLastThree(LeftStick,c);
+                   //Full = LeftStick.getCollectedShapes().size() == 6 ; 
+                   /*if(Full){
+                       c.loseALive();
+                       for(int z = 0; i < 6; i++){
+                           c.getControlableObjects().remove(LeftStick.removeCollectedShape(z));
+                       }
+                       LeftStick.setyMin(440);
+                       continue;
+                   }*/
                }else if(rightIntersect(shapec,clown)){
                    int yMin = RightStick.getyMin();
                    RightStick.addCollectedShape(shapec);
@@ -87,7 +106,7 @@ public class Admin {
                     shapec.setY(shapec.getY() - 30);}
                    removedShapes =removeLastThree(RightStick,c);
                }
-               c.getMovableObjects().remove(shapec);
+               c.getMovableObjects().remove(shapec); //starting from here
                if(!removedShapes)
                    c.getControlableObjects().add(shapec);
                 }
