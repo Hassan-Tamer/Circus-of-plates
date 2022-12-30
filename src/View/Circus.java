@@ -1,28 +1,28 @@
 package View;
 
 import Controller.Admin;
-import Controller.ImageObjectFactory;
+
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
 import java.util.LinkedList;
 import java.util.List;
-//plate 70*22
+
 import Model.*;
 
 public final class Circus implements World{
     private static Circus INSTANCE;
-    private final List<GameObject> constant = new LinkedList<GameObject>(); //theme
-    private final List<GameObject> moving = new LinkedList<GameObject>();   //plates , pies
-    private final List<GameObject> control = new LinkedList<GameObject>();  //clown
-    private static int LIVES = 5;
+    private final List<GameObject> constant = new LinkedList<GameObject>();
+    private final List<GameObject> moving = new LinkedList<GameObject>();
+    private final List<GameObject> control = new LinkedList<GameObject>();
+    private int Lives;
     private final int width,height;
     public Clown getClown() {
         return clown;
     }
 
     private Clown clown;
-
+    private CryingClown clown2;
     public Admin getAdmin() {
         return admin;
     }
@@ -49,21 +49,25 @@ public final class Circus implements World{
         control.add(clown);
         constant.add(rightShelf);
         constant.add(leftShelf);
+        Lives = 1;
         updateLives();
         startTime = System.currentTimeMillis();
     }
 
     public void loseALive(){
-        if(LIVES>1){
+        if(Lives>1){
             constant.remove(constant.size()-1);
-            LIVES--;
+            Lives--;
         }
         else{
-            control.remove(clown);// hina mi7tageen clone 34an ne initialize el crying clown with the same coordinates as the original clown
+            clown2 = new CryingClown(clown.getX(),clown.getY() + 30,"Assets\\crying clown.png");
+            control.add(clown2);
+            control.remove(clown);
+            
         }
     }
     private void updateLives(){
-        for(int i = 0; i < LIVES; i++){
+        for(int i = 0; i < Lives; i++){
             constant.add(new ImageObject(21*i + width/2,0,"Assets\\life.png"));
         }
     }
@@ -88,7 +92,7 @@ public final class Circus implements World{
 
     @Override
     public String getStatus() {
-        return "Score = " + ((Clown)getControlableObjects().get(0)).getScore() + "   ||   Lives = " + LIVES;
+        return "Score = " + getClown().getScore() + "   ||   Lives = " + Lives;
     }
 
     @Override

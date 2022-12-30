@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.IOException;
 
 public class Bomb extends Shape{
     public Bomb(int x, int y , String path){
