@@ -12,10 +12,14 @@ public class Bomb extends Shape{
         super(x, y, "Assets\\bomb.png");
     }
     public static boolean BombStriked(GameObject b, GameObject clown){
-        int netX = clown.getX() - (b.getX() + b.getWidth());
-        int netY = clown.getY() - (b.getY()+ b.getHeight() - 10);
-        boolean inRangeX = netX<=0 && netX>=-1*(clown.getWidth());
-        boolean inRangeY = netY<=0 && netY>=-10;
+        //int netX = clown.getX() - (b.getX() + b.getWidth());
+        int Margin=10;
+        int netXRight = clown.getX() + clown.getWidth() - 55 - b.getX();
+        int netXLeft = clown.getX()-b.getX();
+        int netY = clown.getY() - (b.getY()+ b.getHeight());
+        //boolean inRangeX = netX<=0 && netX>=-1*(clown.getWidth());
+        boolean inRangeX =(netXLeft<=Margin&&netXLeft>=((-1)*Margin))||(netXRight<=Margin&&netXRight>=((-1)*Margin));
+        boolean inRangeY = netY==0;
         return inRangeX && inRangeY;
     }
     @Override

@@ -40,23 +40,28 @@ public class Admin {
         TOPSTICK = clown.getY()+70;
     }
 
-
     private boolean leftIntersect(GameObject o , GameObject clown){
-        int y = LeftStick.getyMin();
+        //int y = LeftStick.getyMin();
+        if((!(o instanceof Bomb))&&gameOver){
+        int y = clown.getY();
         int netX = clown.getX() - o.getX();
-        int netY = y - o.getY();
+        int netY = y - (o.getY()+o.getHeight());
         boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
         boolean inRangeY = netY == 0;
-        return inRangeX && inRangeY;
+        return inRangeX && inRangeY;}
+        return false;
     }
 
     private boolean rightIntersect(GameObject o , GameObject clown){
-        int y = RightStick.getyMin();
+        //int y = RightStick.getyMin();
+        if((!(o instanceof Bomb)&&gameOver)){
+        int y = clown.getY();
         int netX = clown.getX() + clown.getWidth() - 55 - o.getX();
-        int netY = y - o.getY();
+        int netY = y - (o.getY()+o.getHeight());
         boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
         boolean inRangeY = netY == 0;
-        return inRangeX && inRangeY;
+        return inRangeX && inRangeY;}
+        return false;
     }
 
     private boolean isIntersected(GameObject o , GameObject clown){
