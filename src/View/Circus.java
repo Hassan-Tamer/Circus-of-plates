@@ -15,18 +15,9 @@ public final class Circus implements World{
     private final List<GameObject> constant = new LinkedList<GameObject>();
     private final List<GameObject> moving = new LinkedList<GameObject>();
     private final List<GameObject> control = new LinkedList<GameObject>();
-    private int Lives;
+    private int Lives = 1;
     private final int width,height;
-    public Clown getClown() {
-        return clown;
-    }
-
     private Clown clown;
-    private CryingClown clown2;
-    public Admin getAdmin() {
-        return admin;
-    }
-
     private final Admin admin;
     private static final int CLOWNSPEED = 10;
     private Shelf rightShelf;
@@ -49,28 +40,10 @@ public final class Circus implements World{
         control.add(clown);
         constant.add(rightShelf);
         constant.add(leftShelf);
-        Lives = 1;
-        updateLives();
+        Life.updateLives(this,Lives);
         startTime = System.currentTimeMillis();
     }
 
-    public void loseALive(){
-        if(Lives>1){
-            constant.remove(constant.size()-1);
-            Lives--;
-        }
-        else{
-            clown2 = new CryingClown(clown.getX(),clown.getY() + 30,"Assets\\crying clown.png");
-            control.add(clown2);
-            control.remove(clown);
-            
-        }
-    }
-    private void updateLives(){
-        for(int i = 0; i < Lives; i++){
-            constant.add(new ImageObject(21*i + width/2,0,"Assets\\life.png"));
-        }
-    }
     private void backgroundMusic(){
         Music intro = new Music("Assets\\tadaa.wav");
         intro.playSound();
@@ -135,6 +108,14 @@ public final class Circus implements World{
 
     public Shelf getLeftShelf() {
         return leftShelf;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public Clown getClown() {
+        return clown;
     }
 
 }

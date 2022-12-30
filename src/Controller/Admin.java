@@ -31,6 +31,7 @@ public class Admin {
     private int FACTORYRATE = 1000;
     private int BOMBRATE = 4000;
     private int Margin = 10; // can change with difficulty for more accuracy
+    private boolean gameOver = true;
     
     public Admin(Circus c){
         this.clown = c.getControlableObjects().get(0);
@@ -71,7 +72,7 @@ public class Admin {
            if(shapec instanceof Bomb){
                    if(Bomb.BombStriked(shapec, clown)){
                         c.getMovableObjects().remove(shapec);
-                        c.loseALive();
+                       gameOver= Life.loseALive(c);
                    }
                }
            if(isIntersected(shapec , clown)){
@@ -127,7 +128,7 @@ public class Admin {
             }
 
         }
-        return true;
+        return gameOver;
     }
     private boolean removeLastThree(Stick stick,Circus c){
 
