@@ -85,7 +85,7 @@ public class Admin {
 
                 if(leftIntersect(shapec,clown)){
                    int yMin = LeftStick.getyMin();
-                   LeftStick.addCollectedShape(shapec);
+                   LeftStick.addCollectedShape(shapec,gameOver);
                    if(shapec instanceof Pie){
                    shapec.setY(shapec.getY() - 30);}
                    removedShapes =removeLastThree(LeftStick,c);
@@ -101,7 +101,7 @@ public class Admin {
                    }*/
                }else if(rightIntersect(shapec,clown)){
                    int yMin = RightStick.getyMin();
-                   RightStick.addCollectedShape(shapec);
+                   RightStick.addCollectedShape(shapec,gameOver);
                    if(shapec instanceof Pie){
                     shapec.setY(shapec.getY() - 30);}
                    removedShapes =removeLastThree(RightStick,c);
