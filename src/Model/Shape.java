@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.Admin;
 import View.Circus;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
@@ -12,11 +13,12 @@ public abstract class Shape extends ImageObject{
         return color;
     }
     private final int color;        //red , green , blue , invalid  --> 1,2,3,-1
-    private final Circus circus;
-    public Shape(int x, int y, String path){
+    private final Circus circus; // 3awez an2el el circus beta3 el admin hina
+    public Shape(int x, int y, String path, Admin admin){
         super(x, y, path);
         color = pathSplitter(path);
-        circus = Circus.getInstance(1100,600);
+        //circus = Circus.getInstance(1100,600);
+        circus = admin.getCircus();
     }
     private int pathSplitter(String path) {
         String[] s = path.split("_");
@@ -34,14 +36,14 @@ public abstract class Shape extends ImageObject{
 
     @Override
     public void setX(int x) {
-        GameObject clown = circus.getControlableObjects().get(0);
-        if((this.getX() > 310 && this.getX() < 730) && circus.getMovableObjects().contains(this) )
+        GameObject clown = circus.getClown();
+        if((this.getX() > 310 && this.getX() < 730) && circus.getMovableObjects().contains(this))
+            return;
+        
+        if(circus.getAdmin().getLeftStick().getCollectedShapes().contains(this)  && x >= circus.getWidth() - clown.getWidth())
             return;
 
-        if(circus.getAdmin().getLeftStick().getCollectedShapes().contains(this) && x > clown.getX() - 2)
-            return;
-
-        if(circus.getAdmin().getRightStick().getCollectedShapes().contains(this) && x < clown.getX() + clown.getWidth()/2)
+        if(circus.getAdmin().getRightStick().getCollectedShapes().contains(this) && x <= clown.getWidth()-55)
             return;
 
         super.setX(x);
@@ -66,6 +68,8 @@ public abstract class Shape extends ImageObject{
 
     }
 
+    public abstract int Getdelta();
+    public abstract int Getdy();
     public int getShapeHeight(){
         return shapeHeight;
     }

@@ -1,27 +1,16 @@
 package Model;
 
-
-import eg.edu.alexu.csd.oop.game.GameObject;
+import Controller.Admin;
+import java.io.IOException;
 
 public class Bomb extends Shape{
-    public Bomb(int x, int y , String path){
-        super(x, y, path);
+public Bomb(int x, int y , String path,Admin admin){
+        super(x, y, path,admin);
+    }
+    public Bomb(int x, int y,Admin admin){
+        super(x, y, "Assets\\bomb.png",admin);
     }
 
-    public Bomb(int x, int y){
-        super(x, y, "Assets\\bomb.png");
-    }
-    public static boolean BombStriked(GameObject b, GameObject clown){
-        //int netX = clown.getX() - (b.getX() + b.getWidth());
-        int Margin=10;
-        int netXRight = clown.getX() + clown.getWidth() - 55 - b.getX();
-        int netXLeft = clown.getX()-b.getX();
-        int netY = clown.getY() - (b.getY()+ b.getHeight());
-        //boolean inRangeX = netX<=0 && netX>=-1*(clown.getWidth());
-        boolean inRangeX =(netXLeft<=Margin&&netXLeft>=((-1)*Margin))||(netXRight<=Margin&&netXRight>=((-1)*Margin));
-        boolean inRangeY = netY==0;
-        return inRangeX && inRangeY;
-    }
     @Override
     public void setY(int y) {
         super.setY(y);
@@ -29,6 +18,16 @@ public class Bomb extends Shape{
     @Override
     public void setX(int x) {
 
+    }
+
+    @Override
+    public int Getdelta() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int Getdy() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

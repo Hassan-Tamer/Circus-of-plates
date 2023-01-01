@@ -21,12 +21,12 @@ public class Music extends Thread{
     public Music(String filename){
         this.filename = filename;
     }
-    public void playSound(){
+    public synchronized void playSound(){
 
         String strFilename = filename;
 
         try {
-            soundFile = new File(strFilename);
+            soundFile = new File(filename);
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);

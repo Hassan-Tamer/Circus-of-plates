@@ -3,9 +3,7 @@ package Model;
 import View.Circus;
 
 public class Life {
-
-    private static final int defaultLIVES = 5;
-    private static int currentLives = defaultLIVES;
+    private static int currentLives;
     private static String defaultPath = "Assets\\life.png";
 
     public static void updateLives(Circus circus,int Lives){
@@ -16,7 +14,7 @@ public class Life {
     }
 
     public static void updateLives(Circus circus){
-        for(int i = 0; i < defaultLIVES; i++)
+        for(int i = 0; i < currentLives; i++)
             circus.getConstantObjects().add(new ImageObject(21*i + circus.getWidth()/2,0,defaultPath));
 
     }
