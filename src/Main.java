@@ -1,6 +1,7 @@
 import Controller.*;
 import View.Circus;
 
+import View.*;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 import javax.swing.*;
@@ -11,6 +12,8 @@ import java.awt.event.ActionListener;
 public class Main {
     private static GameState state;
     public static void main(String[] args){
+	    Menu m = new Menu();
+        m.setVisible(true);
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Game");

@@ -16,8 +16,8 @@ public class GameOver extends GameState{
 
     public void gameAction() {
         this.getCircus().getConstantObjects().add(new ImageObject(400, 300, "Assets\\game_over.png"));
+        CryingClown cryingClown= new CryingClown(this.getCircus().getClown().getX(),this.getCircus().getHeight()/2 + 50);
         this.getCircus().getControlableObjects().clear();
-        CryingClown cryingClown= new CryingClown(this.getCircus().getWidth()/2,this.getCircus().getHeight()/2);
         this.getCircus().getControlableObjects().add(cryingClown);
 
     }
