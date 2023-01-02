@@ -54,14 +54,6 @@ public class Admin {
         boolean inRangeY = netY == 0;
         return inRangeX && inRangeY;
     }
-
-    private boolean BombStriked(GameObject b, GameObject clown){
-        int netX = clown.getX() - (b.getX());
-        int netY = clown.getY() - (b.getY()+ b.getHeight() - 10);
-        boolean inRangeX = netX<=b.getWidth() && netX>=-1*(clown.getWidth());
-        boolean inRangeY = netY<=0 && netY>=-10;
-        return inRangeX && inRangeY;
-    }
     
     private boolean isIntersected(GameObject o , GameObject clown){
         return (rightIntersect(o,clown) || leftIntersect(o,clown)) && state.getState();
@@ -78,7 +70,7 @@ public class Admin {
 
            if(shapec instanceof Bomb){
                if(state.getState()){
-                   if(BombStriked(shapec, clown)){
+                   if(ShapeHandle.BombStriked(shapec, clown)){
                         c.getMovableObjects().remove(shapec);
                         if(!Life.loseALive(c)){
                             state=new GameOver(this.getCircus());
@@ -94,7 +86,7 @@ public class Admin {
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
                    shapec.setY(yMin-shapec.Getdy());
-                   removedShapes =removeLastThree(LeftStick,c);
+                   removedShapes =ShapeHandle.removeLastThree(LeftStick,c);
                    if(LeftStick.isFull()){
                        {
                            if(!Life.loseALive(c)){
@@ -111,11 +103,8 @@ public class Admin {
                }else if(rightIntersect(shapec,clown)){
                    int yMin = RightStick.getyMin();
                    RightStick.addCollectedShape(shapec);
-                   /*if(shapec instanceof Pie){
-                    shapec.setY(shapec.getY() - 30);}
-                   removedShapes =removeLastThree(RightStick,c);*/
                    shapec.setY(yMin-shapec.Getdy());
-                    removedShapes =removeLastThree(RightStick,c);
+                    removedShapes =ShapeHandle.removeLastThree(RightStick,c);
                     if(RightStick.isFull()){
                         {
                         if(!Life.loseALive(c)){
@@ -159,21 +148,6 @@ public class Admin {
 
         return true;
     }
-    private boolean removeLastThree(Stick stick,Circus c){
-
-        int size = stick.getCollectedShapes().size();
-        if(size >= 3) {
-            if(stick.getCollectedShapes().get(size-1).getColor() == stick.getCollectedShapes().get(size-2).getColor() && stick.getCollectedShapes().get(size-2).getColor() == stick.getCollectedShapes().get(size-3).getColor())
-            {
-                c.getControlableObjects().remove(stick.removeCollectedShape(size-1));
-                c.getControlableObjects().remove(stick.removeCollectedShape(size-2));
-                c.getControlableObjects().remove(stick.removeCollectedShape(size-3));
-                c.addPoint();
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void setFACTORYRATE(int FACTORYRATE) {
         this.FACTORYRATE = FACTORYRATE;
@@ -181,10 +155,6 @@ public class Admin {
 
     public void setBOMBRATE(int BOMBRATE) {
         this.BOMBRATE = BOMBRATE;
-    }
-
-    public void setMargin(int Margin) {
-        this.Margin = Margin;
     }
         public Stick getLeftStick() {
         return LeftStick;
