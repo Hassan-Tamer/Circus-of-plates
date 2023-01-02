@@ -4,14 +4,15 @@
  */
 package Model;
 
-/**
- *
- * @author omarelshobky
- */
+
 public class CryingClown extends ImageObject{
     
     public CryingClown(int x, int y, String path) {
         super(x, y, path);
+    }
+
+    public CryingClown(int x, int y) {
+        super(x, y, "Assets\\crying clown.png");
     }
 
     @Override

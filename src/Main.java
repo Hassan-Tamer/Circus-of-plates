@@ -1,6 +1,4 @@
-import Controller.Easy;
-import Controller.Hard;
-import Controller.Medium;
+import Controller.*;
 import View.Circus;
 
 import eg.edu.alexu.csd.oop.game.GameEngine;
@@ -11,6 +9,7 @@ import java.awt.event.ActionListener;
 
 
 public class Main {
+    private static GameState state;
     public static void main(String[] args){
 
         JMenuBar menuBar = new JMenuBar();
@@ -35,6 +34,7 @@ public class Main {
         //final Circus circus = Circus.getInstance(1100,600);
         final Circus circus = new Circus(1100,600);
         final GameEngine.GameController gameController =  GameEngine.start("Circus Of Plates", circus,menuBar);
+        state = new NewGame(circus,gameController);
         easy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +59,9 @@ public class Main {
         });
         newMenuItem.addActionListener(new ActionListener() {
         @Override public void actionPerformed(ActionEvent e) {
-         		gameController.changeWorld(circus.clone());
+         		//gameController.changeWorld(circus.clone());
+           // gameController.changeWorld(state.getCircus());
+            state.gameAction();
                         
          	}
  });

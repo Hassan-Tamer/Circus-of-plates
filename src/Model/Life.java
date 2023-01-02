@@ -3,7 +3,7 @@ package Model;
 import View.Circus;
 
 public class Life {
-    private static int currentLives;
+    private static int currentLives = 2;
     private static String defaultPath = "Assets\\life.png";
 
     public static void updateLives(Circus circus,int Lives){
@@ -18,18 +18,17 @@ public class Life {
             circus.getConstantObjects().add(new ImageObject(21*i + circus.getWidth()/2,0,defaultPath));
 
     }
-    public static boolean loseALive(Circus circus){
+
+    public static boolean loseALive(Circus c){
         if(currentLives>1){
-            circus.getConstantObjects().remove(circus.getConstantObjects().size()-1);
+            c.getConstantObjects().remove(c.getConstantObjects().size()-1);
             currentLives--;
+            return true;
         }
         else{
-            Clown mainClown = circus.getClown();
-            CryingClown clown2 = new CryingClown(mainClown.getX(),mainClown.getY() + 30,"Assets\\crying clown.png");
-            circus.getControlableObjects().clear();
-            circus.getControlableObjects().add(clown2);
+            c.getConstantObjects().remove(c.getConstantObjects().size()-1);
+            currentLives--;
             return false;
         }
-        return true;
     }
 }

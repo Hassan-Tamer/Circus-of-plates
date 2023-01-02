@@ -15,7 +15,7 @@ public class Circus implements World{
     private final List<GameObject> constant = new LinkedList<GameObject>();
     private final List<GameObject> moving = new LinkedList<GameObject>();
     private final List<GameObject> control = new LinkedList<GameObject>();
-    private int Lives;
+    private int Lives = 2;
     private int SPEED=10;
     private final int width,height;
     private Clown clown;
@@ -52,36 +52,13 @@ public class Circus implements World{
         control.add(clown);
         constant.add(rightShelf);
         constant.add(leftShelf);
-        Lives = 2;
-        updateLives();
+        Life.updateLives(this,Lives);
         startTime = System.currentTimeMillis();
     }
     public Circus clone(){
         return new Circus(this);
         }
 
-    public boolean loseALive(){
-        if(Lives>1){
-            constant.remove(constant.size()-1);
-            Lives--;
-            return true;
-        }
-        else{
-            constant.remove(constant.size()-1);
-            Lives--;
-            clown2 = new CryingClown(clown.getX(),clown.getY(),"Assets\\crying clown.png");
-            control.remove(clown);
-            moving.addAll(control);
-            control.removeAll(control);
-            control.add(clown2);
-            return false;
-        }
-    }
-    private void updateLives(){
-        for(int i = 0; i < Lives; i++){
-            constant.add(new ImageObject(21*i + width/2,0,"Assets\\life.png"));
-        }
-    }
     public void backgroundMusic(){
         Music intro = new Music("Assets\\tadaa.wav");
         intro.playSound();
