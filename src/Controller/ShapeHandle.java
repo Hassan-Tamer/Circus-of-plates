@@ -6,6 +6,8 @@ import eg.edu.alexu.csd.oop.game.GameObject;
 
 public class ShapeHandle {
 
+    private static int Margin = 10;
+
     public static boolean BombStriked(GameObject b, GameObject clown){
         int netX = clown.getX() - (b.getX());
         int netY = clown.getY() - (b.getY()+ b.getHeight() - 10);
@@ -28,5 +30,23 @@ public class ShapeHandle {
             }
         }
         return false;
+    }
+
+    public static boolean leftIntersect(GameObject o , GameObject clown){
+        int y = clown.getY();
+        int netX = clown.getX() - o.getX();
+        int netY = y - (o.getY()+o.getHeight()); // intersect from the top and set it to its y min immediately
+        boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
+        boolean inRangeY = netY == 0;
+        return inRangeX && inRangeY;
+    }
+
+    public static boolean rightIntersect(GameObject o , GameObject clown){
+        int y = clown.getY();
+        int netX = clown.getX() + clown.getWidth() - 55 - o.getX();
+        int netY = y - (o.getY()+o.getHeight());
+        boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
+        boolean inRangeY = netY == 0;
+        return inRangeX && inRangeY;
     }
 }

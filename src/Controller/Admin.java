@@ -35,28 +35,8 @@ public class Admin {
     public void setCircus (Circus cirque){
         this.circus=cirque;
     }
-
-    private boolean leftIntersect(GameObject o , GameObject clown){
-        int y = clown.getY();
-        int netX = clown.getX() - o.getX();
-        int netY = y - (o.getY()+o.getHeight()); // intersect from the top and set it to its y min immediately
-        boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
-        boolean inRangeY = netY == 0;
-        return inRangeX && inRangeY;
-        
-    }
-
-    private boolean rightIntersect(GameObject o , GameObject clown){
-        int y = clown.getY();
-        int netX = clown.getX() + clown.getWidth() - 55 - o.getX();
-        int netY = y - (o.getY()+o.getHeight());
-        boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
-        boolean inRangeY = netY == 0;
-        return inRangeX && inRangeY;
-    }
-    
     private boolean isIntersected(GameObject o , GameObject clown){
-        return (rightIntersect(o,clown) || leftIntersect(o,clown)) && state.getState();
+        return (ShapeHandle.rightIntersect(o,clown) || ShapeHandle.leftIntersect(o,clown)) && state.getState();
     }
     
     public boolean refresh(Circus c){
@@ -82,7 +62,7 @@ public class Admin {
                    continue;
                }
            if(isIntersected(shapec , clown)){
-                if(leftIntersect(shapec,clown)){
+                if(ShapeHandle.leftIntersect(shapec,clown)){
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
                    shapec.setY(yMin-shapec.Getdy());
@@ -100,7 +80,7 @@ public class Admin {
                        LeftStick.getCollectedShapes().clear();
                        continue;
                    }
-               }else if(rightIntersect(shapec,clown)){
+               }else if(ShapeHandle.rightIntersect(shapec,clown)){
                    int yMin = RightStick.getyMin();
                    RightStick.addCollectedShape(shapec);
                    shapec.setY(yMin-shapec.Getdy());

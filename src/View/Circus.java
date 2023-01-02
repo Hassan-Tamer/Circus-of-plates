@@ -11,7 +11,6 @@ import java.util.List;
 import Model.*;
 
 public class Circus implements World{
-    private static Circus INSTANCE;
     private final List<GameObject> constant = new LinkedList<GameObject>();
     private final List<GameObject> moving = new LinkedList<GameObject>();
     private final List<GameObject> control = new LinkedList<GameObject>();
@@ -32,7 +31,7 @@ public class Circus implements World{
         this.height = height;
         init();
         admin = new Admin(this);
-         backgroundMusic();
+//         backgroundMusic();
     }
     
     private Circus(Circus c){
@@ -40,7 +39,7 @@ public class Circus implements World{
         this.height = c.height;
         init();
         admin = new Admin(this);
-        backgroundMusic();
+//        backgroundMusic();
     }
     
     private void init(){
