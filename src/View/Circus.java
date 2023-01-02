@@ -32,7 +32,7 @@ public class Circus implements World{
         this.height = height;
         init();
         admin = new Admin(this);
-        // backgroundMusic();
+         backgroundMusic();
     }
     
     private Circus(Circus c){
@@ -40,7 +40,7 @@ public class Circus implements World{
         this.height = c.height;
         init();
         admin = new Admin(this);
-        //backgroundMusic();
+        backgroundMusic();
     }
     
     private void init(){
