@@ -34,7 +34,7 @@ public class ShapeHandle {
 
     public static boolean leftIntersect(GameObject o , GameObject clown){
         int y = clown.getY();
-        int netX = clown.getX() + 20 - (o.getWidth()/2 + o.getX());               //20 top left
+        int netX = clown.getX() + 21 - (o.getWidth()/2 + o.getX());               //21 top left
         int netY = y - (o.getY()+o.getHeight()); // intersect from the top and set it to its y min immediately
         boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
         boolean inRangeY = Math.abs(netY) < 2;
