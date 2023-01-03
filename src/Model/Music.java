@@ -77,4 +77,11 @@ public class Music extends Thread{
         while(true)
             this.playSound();
     }
+
+    public static void backgroundMusic(){
+        Music intro = new Music("Assets\\tadaa.wav");
+        intro.playSound();
+        Music backMusic = new Music("Assets\\circus.wav");
+        backMusic.start();
+    }
 }

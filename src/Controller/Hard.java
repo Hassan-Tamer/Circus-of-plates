@@ -8,8 +8,10 @@ public class Hard implements Strategy{
         Circus c2 = c.clone();
         c2.SetSPEED(5);
         c2.getAdmin().setShapeSpeed(3);
-        c2.getAdmin().setBOMBRATE(1500);
+        c2.getAdmin().setBOMBRATE(2000);
         c2.getAdmin().setFACTORYRATE(500);
         return c2;
+        // change speed 
+        // drop boombs more frequently
     }
 }

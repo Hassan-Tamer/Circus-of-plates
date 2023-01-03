@@ -13,10 +13,5 @@ public class Context {
    public Circus executeStrategy(Circus c){
       return strategy.changeDifficulty(c);
    }
-
-   public Strategy getStrategy()
-   {
-      return this.strategy;
-   }
 }
 

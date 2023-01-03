@@ -23,8 +23,10 @@ public class ImageObject implements GameObject {
         this.visible = true;
         try {
             for (int i = 0; i< (spriteImage.length/2) ; i++){
-            spriteImage[i] =  ImageIO.read(new File(path1));
-            spriteImage[i + (spriteImage.length/2)] =  ImageIO.read(new File(path2));
+            //spriteImage[i] =  ImageIO.read(new File("/Users/omarelshobky/Downloads/Assets/"+path1));
+            //spriteImage[i + (spriteImage.length/2)] =  ImageIO.read(new File("/Users/omarelshobky/Downloads/Assets/"+path2));
+            spriteImage[i] =  ImageIO.read(new File("Assets\\"+path1));
+            spriteImage[i + (spriteImage.length/2)] =  ImageIO.read(new File("Assets\\"+path2));
             }
         } catch (IOException e) {
             System.out.println("Error Loading Picture");
@@ -37,8 +39,8 @@ public class ImageObject implements GameObject {
         //this.path = path;
         this.visible = true;
         try {
-            spriteImage[0] =  ImageIO.read(new File(path));
-            //spriteImage[0] =  ImageIO.read(new File(path));
+            //spriteImage[0] =  ImageIO.read(new File("/User's/omarelshobky/Downloads/Assets/"+path));
+            spriteImage[0] =  ImageIO.read(new File("Assets\\"+path));
         } catch (IOException e) {
             System.out.println("Error Loading Picture" + path);
         }

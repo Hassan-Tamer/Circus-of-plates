@@ -12,8 +12,11 @@ import Controller.Medium;
 import Controller.NewGame;
 import Controller.Strategy;
 import eg.edu.alexu.csd.oop.game.GameEngine;
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -78,8 +81,8 @@ public class Menu extends JFrame{
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Easy e = new Easy();
                 context = new Context(e);
-                circus = context.executeStrategy(e.changeDifficulty(circus));
-                gamectrl = GameEngine.start("Circus Of Plates", circus, menuBar);
+                circus=context.executeStrategy(e.changeDifficulty(circus));
+                gamectrl =  GameEngine.start("Circus Of Plates", circus,menuBar);
                 setVisible(false);
             }
         });
@@ -162,6 +165,5 @@ public class Menu extends JFrame{
         pack();
 
 }
-
-
+ 
 }

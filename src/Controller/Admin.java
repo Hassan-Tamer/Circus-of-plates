@@ -11,6 +11,7 @@ import java.time.*;
 public class Admin {
     private int currentClownPos;
     private Circus circus;
+    private ArrayList<ImageObject> collectables= new ArrayList<>();
     private final Stick LeftStick = new Stick();
     private final Stick RightStick = new Stick();
     private final GameObject clown;
@@ -21,9 +22,20 @@ public class Admin {
     private ShapeGenerator rand;
     private int FACTORYRATE = 1000;
     private int BOMBRATE = 1000;
+    private int Margin = 10; // can change with difficulty for more accuracy
     private GameState state=new DuringGame(this.getCircus());
 
     private int prevClownPos;
+    //private NewGame newg = new NewGame(this.getCircus(),this);
+
+
+    public void setCurrentClownPos(int currentClownPos) {
+        this.currentClownPos = currentClownPos;
+    }
+
+    public int getCurrentClownPos() {
+        return currentClownPos;
+    }
 
     public Admin(Circus c){
         this.clown = c.getControlableObjects().get(0);
@@ -125,8 +137,9 @@ public class Admin {
                 shape.setX(shape.getX() + shapeSpeed);
             else if(shape.getX() > c.getRightShelf().getFallingPosition()-70)
                 shape.setX(shape.getX() - shapeSpeed);
-
-            shape.setY(shape.getY() + shapeSpeed);
+            if(shape.getX()>=c.getLeftShelf().getFallingPosition()+10&&shape.getX()<=c.getRightShelf().getFallingPosition()-70){
+                shape.setY(shape.getY() + shapeSpeed);
+            }
         }
         ((Subject)clown).notifyObservers(prevClownPos-currentClownPos);
         prevClownPos = currentClownPos;
@@ -162,7 +175,14 @@ public class Admin {
         return BOMBRATE;
     }
 
+    public int getShapeSpeed() {
+        return shapeSpeed;
+    }
+
     public void setShapeSpeed(int shapeSpeed) {
         this.shapeSpeed = shapeSpeed;
     }
+    
+    
+    
 }

@@ -12,7 +12,7 @@ public class CryingClown extends ImageObject{
     }
 
     public CryingClown(int x, int y) {
-        super(x, y, "Assets\\crying clown.png");
+        super(x, y, "crying clown.png");
     }
 
     @Override

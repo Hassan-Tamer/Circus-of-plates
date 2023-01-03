@@ -11,15 +11,14 @@ public class ShapeGenerator {
     public Shape randomGenerator(Admin a){
         String[] type = {"plate" , "pie"};
         String[] position = {"left" , "right"};
-//        String[] position = {"right"};
-//        String[] position = {"left"};
         int count = (int)(Math.random() * type.length);
-        int count2 = (int)(Math.random() * position.length);
+        int count2 = (int)(Math.random() * type.length);
         ImageObjectFactory newimage=new ImageObjectFactory();
         return newimage.CreatImageObject(type[count],position[count2],a);
     }
 
     public Bomb randomObstacle(Admin a){
+        //Circus circus = Circus.getInstance(1100,600);
         Circus circus = a.getCircus();
         Shelf shelfL = circus.getLeftShelf();
         Shelf shelfR = circus.getRightShelf();

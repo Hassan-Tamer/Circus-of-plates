@@ -1,12 +1,11 @@
 package View;
 
-import Controller.*;
+import Controller.Admin;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
 import java.util.LinkedList;
 import java.util.List;
-//plate 70*22   // add lives setter and getter to update lives (from life to circus)
 import Model.*;
 
 public class Circus implements World{
@@ -18,7 +17,7 @@ public class Circus implements World{
     private final int width,height;
     private Clown clown;
     private final Admin admin;
-    private static final int CLOWNSPEED = 10;
+    private static final int CLOWNSPEED = 20;
     private Shelf rightShelf;
     private Shelf leftShelf;
     private long startTime;
@@ -29,7 +28,6 @@ public class Circus implements World{
         this.height = height;
         init();
         admin = new Admin(this);
-        // backgroundMusic();
     }
     
     private Circus(Circus c){
@@ -38,17 +36,16 @@ public class Circus implements World{
         this.SPEED = c.getSpeed();
         init();
         admin = new Admin(this);
+        admin.setShapeSpeed(c.getAdmin().getShapeSpeed());
         admin.setBOMBRATE(c.getAdmin().getBOMBRATE());
         admin.setFACTORYRATE(c.getAdmin().getFACTORYRATE());
-
-        //backgroundMusic();
     }
     
     private void init(){
-        clown = Clown.getInstance((width/2) - 50, height-(259) - 18, "Assets\\Clown2.png");
-        rightShelf = new Shelf(800,50,"Assets\\shelf.png",750);
-        leftShelf = new Shelf(0,50,"Assets\\shelf.png",300);
-        ImageObject BackGround =  new ImageObject(0,30,"Assets\\back.png","Assets\\back2.png");
+        clown = Clown.getInstance((width/2) - 50, height-(259) - 18, "Clown2.png");
+        rightShelf = new Shelf(800,50,"shelf.png",800);
+        leftShelf = new Shelf(0,50,"shelf.png",300);
+        ImageObject BackGround =  new ImageObject(0,30,"back.png","back2.png");
         constant.add(BackGround);
         control.add(clown);
         constant.add(rightShelf);
@@ -60,13 +57,6 @@ public class Circus implements World{
     public Circus clone(){
         return new Circus(this);
         }
-
-    public void backgroundMusic(){
-        Music intro = new Music("Assets\\tadaa.wav");
-        intro.playSound();
-        Music backMusic = new Music("Assets\\circus.wav");
-        backMusic.start();
-    }
     @Override
     public boolean refresh() {
          admin.refresh(this);
@@ -84,19 +74,8 @@ public class Circus implements World{
                 case 13 -> "Easy";
                 case 9 -> "Medium";
                 case 5 -> "Hard";
-                default -> "Easy";
-        };
-    }
-
-    public Strategy getStrategy() {
-        return switch (getDifficulty()) {
-            case "Easy" -> new Easy();
-            case "Medium" -> new Medium();
-            case "Hard" -> new Hard();
-            default -> new Easy();
-        };
-    }
-
+                default -> "unknown";
+    };}
     @Override
     public int getSpeed() {
         return SPEED;

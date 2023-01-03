@@ -8,7 +8,7 @@ public Bomb(int x, int y , String path,Admin admin){
         super(x, y, path,admin);
     }
     public Bomb(int x, int y,Admin admin){
-        super(x, y, "Assets\\bomb.png",admin);
+        super(x, y, "bomb.png",admin);
     }
 
     @Override

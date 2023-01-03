@@ -4,7 +4,7 @@ import View.Circus;
 
 public class Life {
     private int currentLives = 2;
-    private static String defaultPath = "Assets\\life.png";
+    private static String defaultPath = "life.png";
 
     public void updateLives(Circus circus,int Lives){
         for(int i = 0; i < Lives; i++)
