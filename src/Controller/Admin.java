@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.time.*;
 
 public class Admin {
+    private int currentClownPos;
     private Circus circus;
     private ArrayList<ImageObject> collectables= new ArrayList<>();
     private final Stick LeftStick = new Stick();
@@ -23,14 +24,25 @@ public class Admin {
     private int BOMBRATE = 1000;
     private int Margin = 10; // can change with difficulty for more accuracy
     private GameState state=new DuringGame(this.getCircus());
+
+    private int prevClownPos;
     //private NewGame newg = new NewGame(this.getCircus(),this);
 
+
+    public void setCurrentClownPos(int currentClownPos) {
+        this.currentClownPos = currentClownPos;
+    }
+
+    public int getCurrentClownPos() {
+        return currentClownPos;
+    }
 
     public Admin(Circus c){
         this.clown = c.getControlableObjects().get(0);
         clock = Clock.systemDefaultZone();
         rand = new ShapeGenerator();
         circus = c;
+        prevClownPos = clown.getX();
     }
     public void setCircus (Circus cirque){
         this.circus=cirque;
@@ -40,7 +52,7 @@ public class Admin {
     }
     
     public boolean refresh(Circus c){
-
+        currentClownPos = clown.getX();
         state.gameAction();
        long currentFactory = clock.millis();
         long currentFactoryBomb = clock.millis();
@@ -62,6 +74,9 @@ public class Admin {
                    continue;
                }
            if(isIntersected(shapec , clown)){
+               /*Observer observer = (Observer) shapec;
+               observer.setSubject((Subject) clown);
+               ((Subject) clown).register(observer);*/
                 if(ShapeHandle.leftIntersect(shapec,clown)){
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
@@ -125,6 +140,7 @@ public class Admin {
                 shape.setY(shape.getY() + shapeSpeed);
             }
         }
+        prevClownPos = currentClownPos;
 
         return true;
     }

@@ -6,9 +6,10 @@ import eg.edu.alexu.csd.oop.game.GameObject;
 
 import java.io.IOException;
 
-public abstract class Shape extends ImageObject{
+public abstract class Shape  extends ImageObject implements Observer {
     private int shapeHeight;
     private int shapeWidth ;
+    private Subject sub;
     public int getColor() {
         return color;
     }
@@ -84,5 +85,15 @@ public abstract class Shape extends ImageObject{
 
     public void setShapeWidth(int shapeWidth) {
         this.shapeWidth = shapeWidth;
+    }
+    @Override
+    public void update(int range) {
+        this.setX(this.getX());
+
+    }
+
+    @Override
+    public void setSubject(Subject sub) {
+        this.sub = sub;
     }
 }

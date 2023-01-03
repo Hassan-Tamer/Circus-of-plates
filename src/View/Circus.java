@@ -11,7 +11,6 @@ import java.util.List;
 import Model.*;
 
 public class Circus implements World{
-    private static Circus INSTANCE;
     private final List<GameObject> constant = new LinkedList<GameObject>();
     private final List<GameObject> moving = new LinkedList<GameObject>();
     private final List<GameObject> control = new LinkedList<GameObject>();

@@ -4,6 +4,7 @@ import Controller.Admin;
 import java.io.IOException;
 
 public class Plate extends Shape{
+    private Subject sub;
     public Plate(int x, int y, String path,Admin admin){
         super(x, y, path,admin);
     }
@@ -15,4 +16,6 @@ public class Plate extends Shape{
     @Override
     public int Getdy() {
         return -5;}
+
+
 }
