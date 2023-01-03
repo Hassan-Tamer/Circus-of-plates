@@ -30,11 +30,4 @@ public class ImageObjectFactory {
            return new Pie(1025,3,"Assets\\pie_"+Color.get(index)+".png",a);
       return null;
     }
-    public ImageObject CreatBomb(Admin a) throws IOException{
-        Integer[] variableX= {0,183,366,549,732,915};
-        int index = (int)(Math.random() * 5);
-        Bomb bomb = new Bomb(variableX[index],0,a);
-        return bomb;
-    }
-
 }

@@ -18,9 +18,8 @@ public class Circus implements World{
     private int SPEED;
     private final int width,height;
     private Clown clown;
-    private CryingClown clown2;
     private final Admin admin;
-    private static final int CLOWNSPEED = 20;
+    private static final int CLOWNSPEED = 10;
     private Shelf rightShelf;
     private Shelf leftShelf;
     private long startTime;
@@ -42,12 +41,12 @@ public class Circus implements World{
         admin = new Admin(this);
         admin.setBOMBRATE(c.getAdmin().getBOMBRATE());
         admin.setFACTORYRATE(c.getAdmin().getFACTORYRATE());
-        //backgroundMusic();*/
+        //backgroundMusic();
     }
     
     private void init(){
         clown = Clown.getInstance((width/2) - 50, height-(259) - 18, "Assets\\Clown2.png");
-        rightShelf = new Shelf(800,50,"Assets\\shelf.png",800);
+        rightShelf = new Shelf(800,50,"Assets\\shelf.png",750);
         leftShelf = new Shelf(0,50,"Assets\\shelf.png",300);
         ImageObject BackGround =  new ImageObject(0,30,"Assets\\back.png","Assets\\back2.png");
         constant.add(BackGround);
@@ -61,24 +60,6 @@ public class Circus implements World{
     public Circus clone(){
         return new Circus(this);
         }
-/*    public boolean loseALive(){
-        if(Lives>1){
-            constant.remove(constant.size()-1);
-            Lives--;
-            return true;
-        }
-        else{
-            clown2 = new CryingClown(clown.getX(),clown.getY(),"crying clown.png");
-            control.add(clown2);
-            control.remove(clown);
-            return false;
-        }
-    }
-    private void updateLives(){
-        for(int i = 0; i < Lives; i++){
-            constant.add(new ImageObject(21*i + width/2,0,"life.png"));
-        }
-    }*/
 
     public void backgroundMusic(){
         Music intro = new Music("Assets\\tadaa.wav");
