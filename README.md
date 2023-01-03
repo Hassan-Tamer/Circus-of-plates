@@ -5,13 +5,15 @@
 State : GameState - [Done]<br>
 Singleton : Clown - [Done]<br>
 Factory : ImageObjects - [Done]<br>
-Strategy : Difficulties - [Started]<br>
+Strategy : Difficulties - [Done]<br>
+snapshot 
 
 ---------------------------------
 ***TODO***<br>
 1)range in x<br>
-2)Handle difficulties<br>
+2)Handle difficulties Rate<br>
 3)UML<br>
+4)Thread music<br>
 
 
 
