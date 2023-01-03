@@ -10,10 +10,9 @@ Observer [Doneeeeeeeeeee]
 
 ---------------------------------
 ***TODO***<br>
-2)Handle difficulties Rate<br>
+
 3)UML<br>
 4)Thread music<br>
-5)Shape speed <br>
 
 
 

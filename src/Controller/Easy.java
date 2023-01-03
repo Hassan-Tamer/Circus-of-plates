@@ -8,8 +8,9 @@ public class Easy implements Strategy{
     public Circus changeDifficulty(Circus c) {
         Circus c2 = c.clone();
         c2.SetSPEED(13);
-        c2.getAdmin().setBOMBRATE(6000);
-        c2.getAdmin().setFACTORYRATE(1300);
+        c2.getAdmin().setShapeSpeed(1);
+        c2.getAdmin().setBOMBRATE(4000);
+        c2.getAdmin().setFACTORYRATE(1500);
         return c2;
     }
 }

@@ -15,7 +15,7 @@ public class Admin {
     private final Stick RightStick = new Stick();
     private final GameObject clown;
     private Clock clock;
-    private int shapeSpeed = 2;
+    private int shapeSpeed = 1;
     private long prevTimeFactory = 0;
     private long prevTimeBomb = 0;
     private ShapeGenerator rand;
@@ -161,6 +161,8 @@ public class Admin {
     public int getBOMBRATE() {
         return BOMBRATE;
     }
-    
-    
+
+    public void setShapeSpeed(int shapeSpeed) {
+        this.shapeSpeed = shapeSpeed;
+    }
 }
