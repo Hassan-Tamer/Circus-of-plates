@@ -37,7 +37,7 @@ public class ShapeHandle {
         int netX = clown.getX() - o.getX();
         int netY = y - (o.getY()+o.getHeight()); // intersect from the top and set it to its y min immediately
         boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
-        boolean inRangeY = netY == 0;
+        boolean inRangeY = Math.abs(netY) < 2;
         return inRangeX && inRangeY;
     }
 
@@ -46,7 +46,7 @@ public class ShapeHandle {
         int netX = clown.getX() + clown.getWidth() - 55 - o.getX();
         int netY = y - (o.getY()+o.getHeight());
         boolean inRangeX = netX<=Margin && netX>=((-1)*Margin);
-        boolean inRangeY = netY == 0;
+        boolean inRangeY = Math.abs(netY) < 2;
         return inRangeX && inRangeY;
     }
 }
