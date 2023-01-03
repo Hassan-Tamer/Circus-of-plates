@@ -10,7 +10,7 @@ public interface Subject {
     public void unregister(Observer obj);
 
     //method to notify observers of change
-    public void notifyObservers();
+    public void notifyObservers(int xDiff);
 
     //method to get updates from subject
     public Object getUpdate(Observer obj);

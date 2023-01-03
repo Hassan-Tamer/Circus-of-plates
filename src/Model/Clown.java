@@ -1,10 +1,11 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Clown extends ImageObject implements Subject{
     private static Clown INSTANCE;
-    private List<Observer> observers;
+    private List<Observer> observers = new ArrayList<>();
     private Clown(int x, int y, String path) {
         super(x, y, path);
     }
@@ -32,7 +33,9 @@ public final class Clown extends ImageObject implements Subject{
     }
 
     @Override
-    public void notifyObservers() {
+    public void notifyObservers(int xDiff) {
+        for(Observer observer : this.observers)
+            observer.update(xDiff);
 
     }
 

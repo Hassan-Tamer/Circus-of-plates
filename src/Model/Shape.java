@@ -90,6 +90,7 @@ public abstract class Shape  extends ImageObject implements Observer {
     public void update(int range) {
         this.setX(this.getX());
 
+
     }
 
     @Override

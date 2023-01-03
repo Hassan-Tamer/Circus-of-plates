@@ -52,6 +52,7 @@ public class Admin {
     }
     
     public boolean refresh(Circus c){
+        Subject clownSubject = (Subject) clown ;
         currentClownPos = clown.getX();
         state.gameAction();
        long currentFactory = clock.millis();
@@ -74,9 +75,9 @@ public class Admin {
                    continue;
                }
            if(isIntersected(shapec , clown)){
-               /*Observer observer = (Observer) shapec;
+               Observer observer = (Observer) shapec;
                observer.setSubject((Subject) clown);
-               ((Subject) clown).register(observer);*/
+               ((Subject)clown).register(observer);
                 if(ShapeHandle.leftIntersect(shapec,clown)){
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
@@ -140,6 +141,7 @@ public class Admin {
                 shape.setY(shape.getY() + shapeSpeed);
             }
         }
+        ((Subject)clown).notifyObservers(prevClownPos-currentClownPos);
         prevClownPos = currentClownPos;
 
         return true;
