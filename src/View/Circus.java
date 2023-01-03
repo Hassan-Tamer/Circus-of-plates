@@ -1,7 +1,6 @@
 package View;
 
-import Controller.Admin;
-import Controller.ImageObjectFactory;
+import Controller.*;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
@@ -41,6 +40,7 @@ public class Circus implements World{
         admin = new Admin(this);
         admin.setBOMBRATE(c.getAdmin().getBOMBRATE());
         admin.setFACTORYRATE(c.getAdmin().getFACTORYRATE());
+
         //backgroundMusic();
     }
     
@@ -84,8 +84,19 @@ public class Circus implements World{
                 case 13 -> "Easy";
                 case 9 -> "Medium";
                 case 5 -> "Hard";
-                default -> "unknown";
-    };}
+                default -> "Easy";
+        };
+    }
+
+    public Strategy getStrategy() {
+        return switch (getDifficulty()) {
+            case "Easy" -> new Easy();
+            case "Medium" -> new Medium();
+            case "Hard" -> new Hard();
+            default -> new Easy();
+        };
+    }
+
     @Override
     public int getSpeed() {
         return SPEED;
