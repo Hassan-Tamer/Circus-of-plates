@@ -7,15 +7,16 @@ import eg.edu.alexu.csd.oop.game.World;
 
 import java.util.LinkedList;
 import java.util.List;
-//plate 70*22
+//plate 70*22   // add lives setter and getter to update lives (from life to circus)
 import Model.*;
 
 public class Circus implements World{
+    private static Circus INSTANCE;
     private final List<GameObject> constant = new LinkedList<GameObject>();
     private final List<GameObject> moving = new LinkedList<GameObject>();
     private final List<GameObject> control = new LinkedList<GameObject>();
-    private int Lives = 2;
-    private int SPEED=10;
+    private Life Lives;
+    private int SPEED;
     private final int width,height;
     private Clown clown;
     private CryingClown clown2;
@@ -31,15 +32,18 @@ public class Circus implements World{
         this.height = height;
         init();
         admin = new Admin(this);
-//         backgroundMusic();
+        // backgroundMusic();
     }
     
     private Circus(Circus c){
         this.width = c.width;
         this.height = c.height;
+        this.SPEED = c.getSpeed();
         init();
         admin = new Admin(this);
-//        backgroundMusic();
+        admin.setBOMBRATE(c.getAdmin().getBOMBRATE());
+        admin.setFACTORYRATE(c.getAdmin().getFACTORYRATE());
+        //backgroundMusic();*/
     }
     
     private void init(){
@@ -51,12 +55,31 @@ public class Circus implements World{
         control.add(clown);
         constant.add(rightShelf);
         constant.add(leftShelf);
-        Life.updateLives(this,Lives);
+        Lives = new Life();
+        Lives.updateLives(this,2);
         startTime = System.currentTimeMillis();
     }
     public Circus clone(){
         return new Circus(this);
         }
+/*    public boolean loseALive(){
+        if(Lives>1){
+            constant.remove(constant.size()-1);
+            Lives--;
+            return true;
+        }
+        else{
+            clown2 = new CryingClown(clown.getX(),clown.getY(),"crying clown.png");
+            control.add(clown2);
+            control.remove(clown);
+            return false;
+        }
+    }
+    private void updateLives(){
+        for(int i = 0; i < Lives; i++){
+            constant.add(new ImageObject(21*i + width/2,0,"life.png"));
+        }
+    }*/
 
     public void backgroundMusic(){
         Music intro = new Music("Assets\\tadaa.wav");
@@ -72,9 +95,17 @@ public class Circus implements World{
 
     @Override
     public String getStatus() {
-        return "Score = " + score+ "   ||   Lives = " + Lives;
+        return "Score = " + score+ "   ||   Lives = " + Lives.getCurrentLives() +"   || Difficulty : " + getDifficulty();
     }
 
+    private String getDifficulty()
+    {
+        return switch (SPEED) {
+                case 13 -> "Easy";
+                case 9 -> "Medium";
+                case 5 -> "Hard";
+                default -> "unknown";
+    };}
     @Override
     public int getSpeed() {
         return SPEED;
@@ -131,5 +162,10 @@ public class Circus implements World{
     public void addPoint(){
         score++;
     }
+
+    public Life getLives() {
+        return Lives;
+    }
+    
 
 }

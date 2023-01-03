@@ -1,7 +1,6 @@
 import Controller.*;
-import View.Circus;
-
 import View.*;
+
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 import javax.swing.*;
@@ -9,13 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Main {
+public class Main{
     private static GameState state;
     public static void main(String[] args){
-	    Menu m = new Menu();
+        Menu m = new Menu();
         m.setVisible(true);
 
-        JMenuBar menuBar = new JMenuBar();
+        /*JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Game");
         JMenu Diff = new JMenu("Set Difficulty");
         JMenuItem easy = new JMenuItem("Easy");
@@ -62,9 +61,7 @@ public class Main {
         });
         newMenuItem.addActionListener(new ActionListener() {
         @Override public void actionPerformed(ActionEvent e) {
-         		//gameController.changeWorld(circus.clone());
-           // gameController.changeWorld(state.getCircus());
-            state.gameAction();
+                    state.gameAction();
                         
          	}
  });
@@ -78,6 +75,7 @@ public class Main {
             @Override public void actionPerformed(ActionEvent e) {
                 gameController.resume();
             }
-        });
+        });*/
         }
+
     }

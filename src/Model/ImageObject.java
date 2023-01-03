@@ -18,15 +18,13 @@ public class ImageObject implements GameObject {
     public ImageObject(int x , int y , String path1 , String path2){
         this.x = x;
         this.y = y;
-        spriteImage = new BufferedImage[20];
+        spriteImage = new BufferedImage[30];
         //this.path = path;
         this.visible = true;
         try {
             for (int i = 0; i< (spriteImage.length/2) ; i++){
             spriteImage[i] =  ImageIO.read(new File(path1));
             spriteImage[i + (spriteImage.length/2)] =  ImageIO.read(new File(path2));
-            /*spriteImage[i] =  ImageIO.read(new File(path1));
-            spriteImage[i + (spriteImage.length/2)] =  ImageIO.read(new File(path2));*/
             }
         } catch (IOException e) {
             System.out.println("Error Loading Picture");

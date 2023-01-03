@@ -8,16 +8,17 @@ public class NewGame extends GameState{
     GameEngine.GameController gamectrl;
 
     public NewGame(Circus c, GameEngine.GameController gamectrl) {
-        super(c);
+        super(c.clone());
         this.gamectrl = gamectrl;
     }
 
     @Override
     public void gameAction() {
         //this.admin.setCircus(new Circus(1100,600));
-        gamectrl.changeWorld(new Circus(1100,600));
+        gamectrl.changeWorld(getCircus());
     }
 
+    @Override
     public boolean getState(){
         return true;
     }

@@ -7,9 +7,9 @@ public class Easy implements Strategy{
     @Override
     public Circus changeDifficulty(Circus c) {
         Circus c2 = c.clone();
-        c2.SetSPEED(1);
-        c2.getAdmin().setBOMBRATE(9900);
-        c2.getAdmin().setFACTORYRATE(1500);        
+        c2.SetSPEED(13);
+        c2.getAdmin().setBOMBRATE(6000);
+        c2.getAdmin().setFACTORYRATE(1300);        
         return c2;
     }
 }

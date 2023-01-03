@@ -52,7 +52,7 @@ public class Admin {
                if(state.getState()){
                    if(ShapeHandle.BombStriked(shapec, clown)){
                         c.getMovableObjects().remove(shapec);
-                        if(!Life.loseALive(c)){
+                        if(!c.getLives().loseALive(c)){
                             state=new GameOver(this.getCircus());
                         }
 
@@ -69,7 +69,7 @@ public class Admin {
                    removedShapes =ShapeHandle.removeLastThree(LeftStick,c);
                    if(LeftStick.isFull()){
                        {
-                           if(!Life.loseALive(c)){
+                           if(!c.getLives().loseALive(c)){
                            state=new GameOver(this.getCircus());
                        }
                        }
@@ -87,7 +87,7 @@ public class Admin {
                     removedShapes =ShapeHandle.removeLastThree(RightStick,c);
                     if(RightStick.isFull()){
                         {
-                        if(!Life.loseALive(c)){
+                        if(!c.getLives().loseALive(c)){
                             state=new GameOver(this.getCircus());
                         }
                         }
@@ -147,5 +147,15 @@ public class Admin {
     public Circus getCircus() {
         return circus;
     }
+  
+
+    public int getFACTORYRATE() {
+        return FACTORYRATE;
+    }
+
+    public int getBOMBRATE() {
+        return BOMBRATE;
+    }
+    
     
 }
