@@ -80,9 +80,10 @@ public class Admin {
                    removedShapes =ShapeHandle.removeLastThree(LeftStick,c);
                    if(LeftStick.isFull()){
                        {
+                        ShapeHandle.loseLifeSound().start();
                            if(!c.getLives().loseALive(c)){
-                           state=new GameOver(this.getCircus());
-                       }
+                                state=new GameOver(this.getCircus());
+                            }
                        }
                        for(GameObject g : LeftStick.getCollectedShapes()){
                            c.getControlableObjects().remove(g);

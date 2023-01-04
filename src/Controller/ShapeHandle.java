@@ -9,11 +9,19 @@ public class ShapeHandle {
 
     private static int Margin = 10;
 
+    public static Music loseLifeSound(){
+        return new Music("Assets\\loselife.wav");
+    }
+
     public static boolean BombStriked(GameObject b, GameObject clown){
         int netX = clown.getX() - (b.getX());
         int netY = clown.getY() - (b.getY()+ b.getHeight() - 10);
         boolean inRangeX = netX<=b.getWidth() && netX>=-1*(clown.getWidth());
         boolean inRangeY = netY<=0 && netY>=-10;
+        if(inRangeX && inRangeY){
+            Music life = new Music("Assets\\loselife.wav");
+            life.start();
+        }
         return inRangeX && inRangeY;
     }
 
