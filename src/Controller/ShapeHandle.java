@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Music;
 import Model.Stick;
 import View.Circus;
 import eg.edu.alexu.csd.oop.game.GameObject;
@@ -26,6 +27,8 @@ public class ShapeHandle {
                 c.getControlableObjects().remove(stick.removeCollectedShape(size-2));
                 c.getControlableObjects().remove(stick.removeCollectedShape(size-3));
                 c.addPoint();
+                Music Removed = new Music("Assets\\remove.wav");
+                Removed.start();
                 return true;
             }
         }

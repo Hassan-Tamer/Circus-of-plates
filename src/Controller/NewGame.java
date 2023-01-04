@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Music;
 import View.Circus;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
@@ -14,8 +15,9 @@ public class NewGame extends GameState{
 
     @Override
     public void gameAction() {
-        //this.admin.setCircus(new Circus(1100,600));
         gamectrl.changeWorld(getCircus());
+        Music newgame = new Music("Assets\\newgame.wav");
+        newgame.start();
     }
 
     @Override

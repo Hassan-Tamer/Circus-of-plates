@@ -10,6 +10,7 @@ public class DuringGame extends GameState{
 
     @Override
     public void gameAction() {
+        
     }
 
     public boolean getState(){

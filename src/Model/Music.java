@@ -6,6 +6,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
@@ -17,13 +18,22 @@ public class Music extends Thread{
     private AudioFormat audioFormat;
     private SourceDataLine sourceLine;
     private String filename;
+    private FloatControl fc;
+    private float fv;
+
+
+    public Music(String filename , float fv){
+        this.filename = filename;
+        this.fv = fv;
+    }
 
     public Music(String filename){
         this.filename = filename;
+        fv = 6.0f;
     }
+
     public synchronized void playSound(){
 
-        String strFilename = filename;
 
         try {
             soundFile = new File(filename);
@@ -45,6 +55,8 @@ public class Music extends Thread{
         try {
             sourceLine = (SourceDataLine) AudioSystem.getLine(info);
             sourceLine.open(audioFormat);
+            fc = ((FloatControl)sourceLine.getControl(FloatControl.Type.MASTER_GAIN));
+            fc.setValue(fv);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
             System.exit(1);
@@ -74,16 +86,18 @@ public class Music extends Thread{
     }
 
     public void run(){
-        while(true)
+        this.playSound();
+    }
+
+    public void run(int i){
+        while(true) 
             this.playSound();
     }
 
     public static void backgroundMusic(){
         Music intro = new Music("Assets\\tadaa.wav");
-        //Music intro = new Music("/Users/omarelshobky/Downloads/Assets/tadaa.wav");
         intro.playSound();
-        Music backMusic = new Music("Assets\\circus.wav");
-        //Music backMusic = new Music("/Users/omarelshobky/Downloads/Assets/circus.wav");
-        backMusic.start();
+        Music backMusic = new Music("Assets\\circus.wav",-10.0f);
+        backMusic.run(1);
     }
 }
