@@ -46,13 +46,12 @@ public class Admin {
         return (ShapeHandle.rightIntersect(o,clown) || ShapeHandle.leftIntersect(o,clown)) && state.getState();
     }
     
-    public boolean refresh(Circus c){
-        Subject clownSubject = (Subject) clown ;
+    public boolean refresh(Circus c){        
         currentClownPos = clown.getX();
         state.gameAction();
-       long currentFactory = clock.millis();
+        long currentFactory = clock.millis();
         long currentFactoryBomb = clock.millis();
-        boolean removedShapes = false, Full = false;
+        boolean removedShapes = false;
         for(int i=0;i<c.getMovableObjects().size();i++){
             Shape shapec = (Shape) c.getMovableObjects().get(i);
 
@@ -63,11 +62,10 @@ public class Admin {
                         if(!c.getLives().loseALive(c)){
                             state=new GameOver(this.getCircus());
                         }
-
-                   }}
-                   else if(shapec.getY() > c.getHeight())
+                   }
+                } else if(shapec.getY() > c.getHeight())
                      c.getMovableObjects().remove(shapec);
-                   continue;
+                continue;
                }
            if(isIntersected(shapec , clown)){
                Observer observer = (Observer) shapec;
@@ -77,7 +75,7 @@ public class Admin {
                    int yMin = LeftStick.getyMin();
                    LeftStick.addCollectedShape(shapec);
                    shapec.setY(yMin-shapec.Getdy());
-                   removedShapes =ShapeHandle.removeLastThree(LeftStick,c);
+                   removedShapes = ShapeHandle.removeLastThree(LeftStick,c);
                    if(LeftStick.isFull()){
                        {
                         ShapeHandle.loseLifeSound().start();
