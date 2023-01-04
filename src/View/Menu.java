@@ -109,6 +109,7 @@ public class Menu extends JFrame{
         });
         Diff.addActionListener(new ActionListener() {
         @Override public void actionPerformed(ActionEvent e) {
+                gamectrl.pause();
                 JFrame gameFrame = (JFrame) menuBar.getParent().getParent().getParent();
                 gameFrame.setVisible(false);
                 setVisible(true);
