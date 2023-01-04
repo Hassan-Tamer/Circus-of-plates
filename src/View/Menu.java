@@ -10,30 +10,22 @@ import Controller.GameState;
 import Controller.Hard;
 import Controller.Medium;
 import Controller.NewGame;
-import Controller.Strategy;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-/**
- *
- * @author omarelshobky
- */
+
 public class Menu extends JFrame{
     private JButton Easybtn;
     private JButton Hardbtn;
