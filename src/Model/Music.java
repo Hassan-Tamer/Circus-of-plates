@@ -80,8 +80,10 @@ public class Music extends Thread{
 
     public static void backgroundMusic(){
         Music intro = new Music("Assets\\tadaa.wav");
+        //Music intro = new Music("/Users/omarelshobky/Downloads/Assets/tadaa.wav");
         intro.playSound();
         Music backMusic = new Music("Assets\\circus.wav");
+        //Music backMusic = new Music("/Users/omarelshobky/Downloads/Assets/circus.wav");
         backMusic.start();
     }
 }

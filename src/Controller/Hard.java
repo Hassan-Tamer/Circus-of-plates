@@ -3,6 +3,13 @@ package Controller;
 import View.Circus;
 
 public class Hard implements Strategy{
+    private static Hard INSTANCE;
+    public static Hard getInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = new Hard();
+        }
+        return INSTANCE;
+    }
     @Override
     public Circus changeDifficulty(Circus c) {
         Circus c2 = c.clone();

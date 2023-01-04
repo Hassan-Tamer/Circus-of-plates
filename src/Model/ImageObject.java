@@ -39,7 +39,7 @@ public class ImageObject implements GameObject {
         //this.path = path;
         this.visible = true;
         try {
-            //spriteImage[0] =  ImageIO.read(new File("/User's/omarelshobky/Downloads/Assets/"+path));
+            //spriteImage[0] =  ImageIO.read(new File("/Users/omarelshobky/Downloads/Assets/"+path));
             spriteImage[0] =  ImageIO.read(new File("Assets\\"+path));
         } catch (IOException e) {
             System.out.println("Error Loading Picture" + path);

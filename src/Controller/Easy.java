@@ -1,9 +1,15 @@
 package Controller;
 
-import View.Circus;
-import eg.edu.alexu.csd.oop.game.World;
 
+import View.Circus;
 public class Easy implements Strategy{
+    private static Easy INSTANCE;
+    public static Easy getInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = new Easy();
+        }
+        return INSTANCE;
+    }
     @Override
     public Circus changeDifficulty(Circus c) {
         Circus c2 = c.clone();
@@ -13,4 +19,5 @@ public class Easy implements Strategy{
         c2.getAdmin().setFACTORYRATE(1300);        
         return c2;
     }
+
 }

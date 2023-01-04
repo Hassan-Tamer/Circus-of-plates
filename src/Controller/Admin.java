@@ -5,13 +5,11 @@ import View.Circus;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 
-import java.util.ArrayList;
 import java.time.*;
 
 public class Admin {
     private int currentClownPos;
     private Circus circus;
-    private ArrayList<ImageObject> collectables= new ArrayList<>();
     private final Stick LeftStick = new Stick();
     private final Stick RightStick = new Stick();
     private final GameObject clown;
@@ -22,11 +20,8 @@ public class Admin {
     private ShapeGenerator rand;
     private int FACTORYRATE = 1000;
     private int BOMBRATE = 1000;
-    private int Margin = 10; // can change with difficulty for more accuracy
     private GameState state=new DuringGame(this.getCircus());
-
     private int prevClownPos;
-    //private NewGame newg = new NewGame(this.getCircus(),this);
 
 
     public void setCurrentClownPos(int currentClownPos) {

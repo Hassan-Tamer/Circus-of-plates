@@ -35,9 +35,9 @@ import javax.swing.JPanel;
  * @author omarelshobky
  */
 public class Menu extends JFrame{
-    private JButton Easy;
-    private JButton Hard;
-    private JButton Medium;
+    private JButton Easybtn;
+    private JButton Hardbtn;
+    private JButton Mediumbtn;
     private GameEngine.GameController gamectrl;
     private Circus circus = new Circus(1100, 600);
     private Context context;
@@ -56,6 +56,7 @@ public class Menu extends JFrame{
         menu.add(resumeMenuItem);
         menuBar.add(menu);
         try {
+            //final Image backgroundImage = javax.imageio.ImageIO.read(new File("/Users/omarelshobky/Downloads/Assets/back.png"));
             final Image backgroundImage = javax.imageio.ImageIO.read(new File("Assets\\back.png"));
             setContentPane(new JPanel(new BorderLayout()) {
                 @Override 
@@ -67,32 +68,32 @@ public class Menu extends JFrame{
         catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        Easy = new JButton();
-        Medium = new JButton();
-        Hard = new JButton();
+        Easybtn = new JButton();
+        Mediumbtn = new JButton();
+        Hardbtn = new JButton();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        Easy.setBackground(new java.awt.Color(102, 204, 0));
-        Easy.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); 
-        Easy.setText("Easy");
-        Easy.setOpaque(true);
-        Easy.addActionListener(new java.awt.event.ActionListener() {
+        Easybtn.setBackground(new java.awt.Color(102, 204, 0));
+        Easybtn.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); 
+        Easybtn.setText("Easy");
+        Easybtn.setOpaque(true);
+        Easybtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Easy e = new Easy();
+                Easy e = Easy.getInstance();
                 context = new Context(e);
                 circus=context.executeStrategy(e.changeDifficulty(circus));
                 gamectrl =  GameEngine.start("Circus Of Plates", circus,menuBar);
                 setVisible(false);
             }
         });
-        Medium.setBackground(new java.awt.Color(204, 204, 0));
-        Medium.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); 
-        Medium.setText("Medium");
-        Medium.setOpaque(true);
-        Medium.addActionListener(new java.awt.event.ActionListener() {
+        Mediumbtn.setBackground(new java.awt.Color(204, 204, 0));
+        Mediumbtn.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); 
+        Mediumbtn.setText("Medium");
+        Mediumbtn.setOpaque(true);
+        Mediumbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Medium m = new Medium();
+                Medium m = Medium.getInstance();
                 context = new Context(m);
                 circus=context.executeStrategy(m.changeDifficulty(circus));
                 gamectrl =  GameEngine.start("Circus Of Plates", circus,menuBar);
@@ -100,14 +101,14 @@ public class Menu extends JFrame{
             }
         });
 
-        Hard.setBackground(new java.awt.Color(204, 0, 51));
-        Hard.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); 
-        Hard.setText("Hard");
-        Hard.setOpaque(true);
-        Hard.addActionListener(new java.awt.event.ActionListener() {
+        Hardbtn.setBackground(new java.awt.Color(204, 0, 51));
+        Hardbtn.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); 
+        Hardbtn.setText("Hard");
+        Hardbtn.setOpaque(true);
+        Hardbtn.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hard h = new Hard();
+                Hard h = Hard.getInstance();
                 context = new Context(h);
                 circus=context.executeStrategy(h.changeDifficulty(circus));
                 gamectrl =  GameEngine.start("Circus Of Plates", circus,menuBar);
@@ -140,25 +141,23 @@ public class Menu extends JFrame{
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(600,600,600)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Easy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Medium, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
-                    .addComponent(Hard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Easybtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Mediumbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                    .addComponent(Hardbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(102, 102, 102)
-                .addComponent(Easy, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Easybtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(Medium, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Mediumbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Hard, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Hardbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(160, Short.MAX_VALUE))
         );
         setBounds(0, 0, 1100, 600);
