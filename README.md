@@ -1,18 +1,7 @@
 # Circus-of-plates
 
-***Design Patterns***
-
-State : GameState - [Done]<br>
-Singleton : Clown - [Done]<br>
-Factory : ImageObjects - [Done]<br>
-Strategy : Difficulties - [Done]<br>
-Observer [Doneeeeeeeeeee]
-
----------------------------------
-***TODO***<br>
-
-3)UML<br>
-4)Thread music<br>
-
+It is a single player-game in which each clown carries two stacks of plates, and there are a
+set of colored plates queues that fall and he tries to catch them, if he manages to collect
+three consecutive plates of the same color, then they vanish and his score increases.
 
 
